@@ -1,27 +1,22 @@
-# ClerkvestApp
+<p align="center">
+  <a href="https://github.com/clerkvest">
+    <img alt="Clerkvest" title="Clerkvest" src=".github/images/Clerkvest_Github_Readme.png" width="350">
+  </a>
+  <br>
+  <a href="https://github.com/Clerkvest/Clerkvest-App">
+    <img src="https://img.shields.io/github/workflow/status/clerkvest/Clerkvest-Gui/Angular CI?logo=github" />
+  </a>     
+  <a href="https://www.codacy.com/manual/Qu1oX/Clerkvest-App?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Clerkvest/Clerkvest-App&amp;utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/6f7e1e440cda4e76bfd2264f8f0d4e0d" />
+  </a>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+## Table of Contents
 
-## Development server
+- [Introduction](#introduction)
+- [Features](#features)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Introduction [![Angular](https://img.shields.io/badge/Angular-8-Red?logo=angular&logoColor=White)](https://angular.io/) [![Website](https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=http%3A%2F%2Fapp.clerkvest.de%2F)](http://app.clerkvest.de/) 
+> Angular Application 
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Features
