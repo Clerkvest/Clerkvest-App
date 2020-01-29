@@ -1,0 +1,77 @@
+.navbar-blue {
+  background-color: rgb(7, 71, 166);
+}
+
+.nav.navbar-nav li a {
+  color: #fff;
+}
+
+.dropdown-menu li a {
+  color: black !important;
+}
+
+.avatar-img {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.alert-img {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.message-img {
+  max-width: 30px;
+  max-height: 30px; 
+}
+
+.navbar-toggler{
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+
+  border: none;
+
+  margin-top: 1px
+}
+
+.navbar-toggler:hover, .navbar-toggler:active, .navbar-toggler:focus { 
+  outline: none; 
+  border-style: none; 
+}
+
+.navbar-toggler .line{
+  width: 25px;
+  float: left;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 5px;
+
+  transition: all .3s ease-in-out;
+}
+
+.navbar-toggle .line-top {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+
+.navbar-toggle .line-middle {
+  opacity: 0;
+}
+
+.navbar-toggle .line-bottom {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+
+.navbar-toggle.collapsed .line-top {
+  transform: rotate(0);
+}
+
+.navbar-toggle.collapsed .line-middle {
+  opacity: 1;
+}
+
+.navbar-toggle.collapsed .line-bottom {
+  transform: rotate(0);
+}
