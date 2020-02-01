@@ -1,5 +1,5 @@
 import { async } from '@angular/core/testing';
-import {LocalService} from './local.service';
+import { LocalService } from './local.service';
 
 describe('LocalService', () => {
   let service;

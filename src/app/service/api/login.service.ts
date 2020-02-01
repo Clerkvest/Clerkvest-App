@@ -11,21 +11,21 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import {Inject, Injectable, Optional} from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { HttpClient, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import {BASE_PATH} from '../variables';
-import {Configuration} from '../configuration';
-import {Observable} from "rxjs";
+import { BASE_PATH } from '../variables';
+import { Configuration } from '../configuration';
+import { Observable } from 'rxjs';
 
-import {IEmployee} from "../../model/IEmployee";
-import {LocalService} from "../cookie/local.service";
+import { IEmployee } from '../../model/IEmployee';
+import { LocalService } from '../cookie/local.service';
 
 
 @Injectable()
 export class LoginService {
 
-    protected basePath = 'http://127.0.0.1:8080/tit-rest/api';
+    protected basePath = 'http://127.0.0.1:8080/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -77,7 +77,7 @@ export class LoginService {
             'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
+        if (httpHeaderAcceptSelected !== undefined) {
             headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
