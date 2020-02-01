@@ -13,13 +13,13 @@ import {IEmployee} from './IEmployee';
 
 
 export interface IProject {
-    project_id?: number;
-    employee_id?: IEmployee;
+    projectId?: number;
+    employeeId?: IEmployee;
     link?: string;
     title?: string;
     description?: string;
     goal?: number;
-    invested_in?: number;
+    investedIn?: number;
     reached?: boolean;
     image?: string;
     created_at?: Date;
