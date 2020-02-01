@@ -1,3 +1,6 @@
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { APIS } from './service/api/api';
+import { CookieService } from 'ngx-cookie-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -9,6 +12,7 @@ import { NavigatorComponent } from './component/navigator/navigator.component';
 import { InvestmentComponent } from './ui/investment/investment.component';
 import { LoginComponent } from './ui/login/login.component';
 import { Error404Component } from './ui/error/error404/error404.component';
+import { ApiModule } from './service/api.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +26,15 @@ import { Error404Component } from './ui/error/error404/error404.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ApiModule
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    HttpClient,
+    APIS
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

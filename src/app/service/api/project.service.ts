@@ -220,7 +220,7 @@ export class ProjectService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<IProject>>(`${this.basePath}/projects`,
+        return this.httpClient.get<Array<IProject>>(`${this.basePath}/project/all`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

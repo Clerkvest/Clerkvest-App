@@ -4,7 +4,7 @@
   </div>
   <div class="row">
      <div class="col-md-4 mb30">
-         <div class="card-block shadow-sm">
+         <div class="card-block shadow-sm" *ngFor="let project of projects$ | async">
              <div class="card-img">
                  <img src="http://via.placeholder.com/296x211">
              </div>
