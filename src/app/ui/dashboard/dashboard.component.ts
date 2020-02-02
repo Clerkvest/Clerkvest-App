@@ -48,8 +48,8 @@ export class DashboardComponent implements OnInit {
 
   /**
    * Open a specific project with the given id.
-   * NOTE: Projects are defined as investment to clearify that for the user.
-   * @param id Id of the project to route to.
+   * NOTE: Projects are actually investments.
+   * @param project Project to route to
    */
   openProject(project: IProject) {
     this.router.navigate(['investment', project.projectId]);
