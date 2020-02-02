@@ -333,7 +333,7 @@ export class EmployeeService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<IEmployee>(`${this.basePath}/employee/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.get<IEmployee>(`${this.basePath}/employee/get/${encodeURIComponent(String(employeeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

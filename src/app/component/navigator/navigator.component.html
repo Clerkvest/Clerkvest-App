@@ -16,7 +16,7 @@
 			<li class="nav-item dropdown">
 				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
 				<ul class="dropdown-menu">					
-					<li><a href="#" class="dropdown-item">Drop 1</a></li>
+					<li><a class="dropdown-item">Profile</a></li>
 					<li><a href="#" class="dropdown-item">Drop 2</a></li>
 					<li><a href="#" class="dropdown-item">Drop 3</a></li>
 					<li><a href="#" class="dropdown-item">Drop 4</a></li>
@@ -25,22 +25,20 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right ml-auto">
 			<li class="nav-item">
-				<a href="#" class="nav-link">
-					<img src="../../../assets/doodle/icon/message.png" class="message-img rounded-circle margin-px-right-sm">
-					<span class="badge badge-pill badge-light">5</span>
+				<a class="nav-link">
+					<img src="../../../assets/doodle/icon/balance.png" class="balance-img margin-px-right-sm">
+					{{(employee$ | async)?.balance}}€
 				</a>
 			</li>
 			<li class="nav-item dropdown margin-text-right">
 				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
-          			<img src="../../../assets/doodle/icon/account.png" class="avatar-img rounded-circle margin-px-right-sm">
-            			John Doe
+					  <img src="../../../assets/doodle/icon/account.png" class="avatar-img rounded-circle margin-px-right-sm">
+					  {{(employee$ | async)?.email}}
         		</a>
 				<ul class="dropdown-menu">
-					<li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Drop 1</a></li>
-					<li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Drop 2</a></li>
-					<li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Drop 3</a></li>
+					<li><a (click)="openProfile()" class="dropdown-item"><i class="fa fa-user-o"></i> Your Profile</a></li>
 					<li class="divider dropdown-divider"></li>
-					<li><a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+					<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
 				</ul>
 			</li>
 		</ul>

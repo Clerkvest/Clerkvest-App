@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
   /**
    * calculates the width of the progress bar in percent 
    * @param project Project to calculate for
+   * @returns The percent value for the progress bar
    */
   calculateWidth(project: IProject): Number {
     return Math.floor(((project.investedIn / project.goal) * 100));
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
    * NOTE: Projects are actually investments.
    * @param project Project to route to
    */
-  openProject(project: IProject) {
+  openProject(project: IProject): void {
     this.router.navigate(['investment', project.projectId]);
   }
 }

@@ -65,4 +65,12 @@ export class LocalService {
   set(name: string, value: string): void {
     this.cookie.set(name, value);
   }
+
+  /**
+   * Deletes a cookie with the given name
+   * @param name Name of the cookie
+   */
+  delete(name: string) {
+    this.cookie.delete(name);
+  }
 }

@@ -13,7 +13,7 @@ import {ICompany} from './ICompany';
 
 
 export interface IEmployee {
-    employee_id?: number;
+    id?: number;
     company?: ICompany;
     email?: string;
     balance?: number;
