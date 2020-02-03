@@ -16,7 +16,6 @@ export interface IProjectComment {
     id?: number;
     employeeId?: number;
     projectId?: number;
-    creator?: IEmployee;
     title?: string;
     text?: string;
     date?: Date;
