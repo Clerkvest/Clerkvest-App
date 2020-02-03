@@ -181,7 +181,7 @@ export class CommentService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comments/${encodeURIComponent(String(projectId))}/comments`,
+        return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comment/${encodeURIComponent(String(projectId))}/comments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

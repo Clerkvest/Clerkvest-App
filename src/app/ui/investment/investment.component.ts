@@ -6,7 +6,7 @@ import { EmployeeService } from 'src/app/service/api/employee.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalService } from 'src/app/service/cookie/local.service';
-import { IProject } from 'src/app/model/models';
+import { IProject, IEmployee, IProjectComment } from 'src/app/model/models';
 import { isNumber } from 'util';
 
 /**
@@ -44,6 +44,31 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public projectState: boolean;
 
   /**
+   * Investment creator
+   */
+  public creator$: Observable<IEmployee>;
+
+  /**
+   * Investment comments
+   */
+  public comments$: Observable<IProjectComment[]>;
+
+  /**
+   * List of all project comments
+   */
+  public commets: IProjectComment[];
+
+  /**
+   * List of employees
+   */
+  public commentEmployees$: Observable<IEmployee>[];
+
+  /**
+   * Comment sub
+   */
+  public commentsSub: Subscription;
+
+  /**
    * Current url id param
    */
   public idParam: string;
@@ -68,8 +93,8 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     private router: Router,
     private localService: LocalService,
     private projectService: ProjectService,
-    private CommentService: CommentService,
-    private EmployeeService: EmployeeService,
+    private commentService: CommentService,
+    private employeeService: EmployeeService,
     private investService: InvestService
   ) { }
 
@@ -88,9 +113,18 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     this.project$ = this.projectService.getProject(this.idParam);
     this.projectSub = this.project$.subscribe(i => {
       this.project = i;
-      this.doesExist = true;
-
       this.calculateState(this.project);
+
+      this.creator$ = this.employeeService.getEmployeeById(this.project.employeeId);
+      this.comments$ = this.commentService.getComments(this.project.id);
+
+      this.comments$.subscribe(comment => {
+        comment.forEach(single => {
+          this.commentEmployees$.push(this.employeeService.getEmployeeById(single.employeeId));
+        });
+
+        this.doesExist = true;
+      });
     })
   }
 
@@ -99,6 +133,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.projectSub.unsubscribe();
+    this.commentsSub.unsubscribe();
   }
 
   /**

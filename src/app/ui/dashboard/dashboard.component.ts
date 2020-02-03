@@ -53,6 +53,6 @@ export class DashboardComponent implements OnInit {
    * @param project Project to route to
    */
   openProject(project: IProject): void {
-    this.router.navigate(['investment', project.projectId]);
+    this.router.navigate(['investment', project.id]);
   }
 }
