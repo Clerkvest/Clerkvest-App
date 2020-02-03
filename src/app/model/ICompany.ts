@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 export interface ICompany {
-    company_id?: number;
+    id?: number;
     name?: string;
     domain?: string;
     image?: string;
-    pay_amount?: number;
-    pay_interval?: number;
-    invite_only?: boolean;
+    payAmount?: number;
+    payInterval?: number;
+    inviteOnly?: boolean;
 }

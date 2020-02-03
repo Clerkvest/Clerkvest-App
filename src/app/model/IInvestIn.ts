@@ -14,8 +14,8 @@ import {IProject} from './IProject';
 
 
 export interface IInvestIn {
-    invest_in_id?: number;
-    project_id?: IProject;
-    employee_id?: IEmployee;
+    id?: number;
+    projectId?: number;
+    employeeId?: number;
     investment?: number;
 }

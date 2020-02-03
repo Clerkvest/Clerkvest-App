@@ -101,7 +101,7 @@ export class CompanyService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<ICompany>(`${this.basePath}/company`,
+        return this.httpClient.post<ICompany>(`${this.basePath}/company/create`,
             body,
             {
                 params: queryParameters,
@@ -147,7 +147,7 @@ export class CompanyService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<ICompany>(`${this.basePath}/company/${encodeURIComponent(String(companyId))}`,
+        return this.httpClient.get<ICompany>(`${this.basePath}/company/get/${encodeURIComponent(String(companyId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -198,7 +198,7 @@ export class CompanyService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<ICompany>(`${this.basePath}/company`,
+        return this.httpClient.put<ICompany>(`${this.basePath}/company/update`,
             body,
             {
                 params: queryParameters,

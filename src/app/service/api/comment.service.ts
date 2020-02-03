@@ -93,7 +93,7 @@ export class CommentService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/comment`,
+        return this.httpClient.post<any>(`${this.basePath}/comment/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -138,7 +138,7 @@ export class CommentService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/comment/${encodeURIComponent(String(commentId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/comment/delete/${encodeURIComponent(String(commentId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -181,7 +181,7 @@ export class CommentService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comments/${encodeURIComponent(String(projectId))}`,
+        return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comments/${encodeURIComponent(String(projectId))}/comments`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

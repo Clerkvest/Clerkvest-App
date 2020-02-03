@@ -13,8 +13,8 @@ import {IEmployee} from './IEmployee';
 
 
 export interface IProject {
-    projectId?: number;
-    employeeId?: IEmployee;
+    id?: number;
+    employeeId?: number;
     link?: string;
     title?: string;
     description?: string;
@@ -22,6 +22,6 @@ export interface IProject {
     investedIn?: number;
     reached?: boolean;
     image?: string;
-    created_at?: Date;
-    funded_at?: Date;
+    createdAt?: Date;
+    fundedAt?: Date;
 }

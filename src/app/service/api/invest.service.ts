@@ -93,7 +93,7 @@ export class InvestService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/invest`,
+        return this.httpClient.post<any>(`${this.basePath}/invest/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -138,7 +138,7 @@ export class InvestService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/invest/${encodeURIComponent(String(investId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/invest/delete/${encodeURIComponent(String(investId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -181,7 +181,7 @@ export class InvestService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<IInvestIn>(`${this.basePath}/invest/${encodeURIComponent(String(investId))}`,
+        return this.httpClient.get<IInvestIn>(`${this.basePath}/invest/get/${encodeURIComponent(String(investId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -224,7 +224,7 @@ export class InvestService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<IInvestIn>>(`${this.basePath}/investments/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.get<Array<IInvestIn>>(`${this.basePath}/invest/get/employee/${encodeURIComponent(String(employeeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -19,7 +19,6 @@ import { BASE_PATH} from '../variables';
 import { Configuration} from '../configuration';
 import { IEmployee} from '../../model/IEmployee';
 import { Observable} from 'rxjs';
-import { IEmployeeComment} from '../../model/IEmployeeComment';
 import { Cookie} from '../../enumeration/cookie.enum';
 import { LocalService} from '../cookie/local.service';
 
@@ -97,60 +96,10 @@ export class EmployeeService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/employee`,
+        return this.httpClient.post<any>(`${this.basePath}/employee/create`,
             body,
             {
                 params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Add a new Comment to a Employee
-     * 
-     * @param body Comment that needs to be added to a Employee
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public addEmployeeComment(body: IEmployeeComment, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public addEmployeeComment(body: IEmployeeComment, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public addEmployeeComment(body: IEmployeeComment, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public addEmployeeComment(body: IEmployeeComment, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling addEmployeeComment.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/employee/comment`,
-            body,
-            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -193,103 +142,7 @@ export class EmployeeService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/employee/${encodeURIComponent(String(employeeId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Finds Employee by Nickname
-     * Multiple Nicknames values can be provided with comma separated strings
-     * @param nickname Nicknames values that need to be considered for filter
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public findEmployeesByNickname(nickname: Array<string>, observe?: 'body', reportProgress?: boolean): Observable<Array<IEmployee>>;
-    public findEmployeesByNickname(nickname: Array<string>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<IEmployee>>>;
-    public findEmployeesByNickname(nickname: Array<string>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<IEmployee>>>;
-    public findEmployeesByNickname(nickname: Array<string>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (nickname === null || nickname === undefined) {
-            throw new Error('Required parameter nickname was null or undefined when calling findEmployeesByNickname.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (nickname) {
-            nickname.forEach((element) => {
-                queryParameters = queryParameters.append('nickname', <any>element);
-            })
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.get<Array<IEmployee>>(`${this.basePath}/employee/findByNickname`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Find All Comments By Employee ID
-     * Returns all Comments for a Employee
-     * @param employeeId ID of Employee which Comments to return
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getAllCommentsByEmployeeId(employeeId: number, observe?: 'body', reportProgress?: boolean): Observable<Array<IEmployeeComment>>;
-    public getAllCommentsByEmployeeId(employeeId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<IEmployeeComment>>>;
-    public getAllCommentsByEmployeeId(employeeId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<IEmployeeComment>>>;
-    public getAllCommentsByEmployeeId(employeeId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (employeeId === null || employeeId === undefined) {
-            throw new Error('Required parameter employeeId was null or undefined when calling getAllCommentsByEmployeeId.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.get<Array<IEmployeeComment>>(`${this.basePath}/employee/${encodeURIComponent(String(employeeId))}/comments`,
+        return this.httpClient.delete<any>(`${this.basePath}/employee/delete/${encodeURIComponent(String(employeeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -382,7 +235,7 @@ export class EmployeeService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/employee`,
+        return this.httpClient.put<any>(`${this.basePath}/employee/update`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -392,66 +245,4 @@ export class EmployeeService {
             }
         );
     }
-
-    /**
-     * Updates a Employee in the Company with form data
-     * 
-     * @param employeeId ID of Employee that needs to be updated
-     * @param firstname Updated firstname of the Employee
-     * @param lastname Updated lastname of the Employee
-     * @param nickname Updated nickname of the Employee
-     * @param isAdmin Changes the Admin status of a Employee
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateEmployeeWithForm(employeeId: number, firstname?: string, lastname?: string, nickname?: string, isAdmin?: boolean, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public updateEmployeeWithForm(employeeId: number, firstname?: string, lastname?: string, nickname?: string, isAdmin?: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public updateEmployeeWithForm(employeeId: number, firstname?: string, lastname?: string, nickname?: string, isAdmin?: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public updateEmployeeWithForm(employeeId: number, firstname?: string, lastname?: string, nickname?: string, isAdmin?: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (employeeId === null || employeeId === undefined) {
-            throw new Error('Required parameter employeeId was null or undefined when calling updateEmployeeWithForm.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/x-www-form-urlencoded'
-        ];
-
-        const canConsumeForm = this.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): void; };
-        let useForm = false;
-        let convertFormParamsToString = false;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        }
-
-        return this.httpClient.post<any>(`${this.basePath}/employee/${encodeURIComponent(String(employeeId))}`,
-            convertFormParamsToString ? formParams.toString() : formParams,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
 }

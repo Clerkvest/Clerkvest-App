@@ -12,11 +12,11 @@
 import {IEmployee} from './IEmployee';
 import {IProject} from './IProject';
 
-
 export interface IProjectComment {
-    project_comment_id?: number;
-    employee_id?: IEmployee;
-    project_id?: IProject;
+    id?: number;
+    employeeId?: number;
+    projectId?: number;
+    creator?: IEmployee;
     title?: string;
     text?: string;
     date?: Date;

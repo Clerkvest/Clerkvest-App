@@ -94,7 +94,7 @@ export class ProjectService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/project`,
+        return this.httpClient.post<any>(`${this.basePath}/project/create`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -139,7 +139,7 @@ export class ProjectService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.basePath}/project/${encodeURIComponent(String(projectId))}`,
+        return this.httpClient.delete<any>(`${this.basePath}/project/delete/${encodeURIComponent(String(projectId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -269,7 +269,7 @@ export class ProjectService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<any>(`${this.basePath}/project`,
+        return this.httpClient.put<any>(`${this.basePath}/project/update`,
             body,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -279,5 +279,4 @@ export class ProjectService {
             }
         );
     }
-
 }

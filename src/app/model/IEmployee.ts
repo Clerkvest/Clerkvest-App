@@ -21,5 +21,5 @@ export interface IEmployee {
     firstname?: string;
     lastname?: string;
     nickname?: string;
-    is_admin?: boolean;
+    isAdmin?: boolean;
 }
