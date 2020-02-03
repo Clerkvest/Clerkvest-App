@@ -35,6 +35,13 @@
     max-height: 100%;
 }
 
+.creator-text {
+    color: rgb(7, 71, 166);
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase; 
+}
+
 .raised-goal-container {
     display: flex;
     justify-content: space-between;
