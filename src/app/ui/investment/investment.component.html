@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-4">
             <h3>Comments</h3>
-            <div class="comment" *ngFor="let comment of comments$; index as i">
+            <div class="comment" *ngFor="let comment of comments; index as i">
                 <img class="rounded-circle" src="http://via.placeholder.com/35x35">
                 <span class="comment-creator margin-text-left">{{(commentEmployees$[i] | async)?.firstname}} {{(commentEmployees$[i] | async)?.lastname}}</span>
                 <p class="comment-text">{{comment.text}}</p>

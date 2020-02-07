@@ -56,12 +56,12 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   /**
    * List of all project comments
    */
-  public commets: IProjectComment[];
+  public comments: IProjectComment[];
 
   /**
    * List of employees
    */
-  public commentEmployees$: Observable<IEmployee>[];
+  public commentEmployees$: Observable<IEmployee>[] = [];
 
   /**
    * Comment sub
@@ -111,15 +111,17 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     }
 
     this.project$ = this.projectService.getProject(this.idParam);
-    this.projectSub = this.project$.subscribe(i => {
-      this.project = i;
+    this.projectSub = this.project$.subscribe(project => {
+      this.project = project;
       this.calculateState(this.project);
 
       this.creator$ = this.employeeService.getEmployeeById(this.project.employeeId);
       this.comments$ = this.commentService.getComments(this.project.id);
 
-      this.comments$.subscribe(comment => {
-        comment.forEach(single => {
+      this.comments$.subscribe(comments => {
+        this.comments = comments;
+
+        comments.forEach(single => {
           this.commentEmployees$.push(this.employeeService.getEmployeeById(single.employeeId));
         });
 
