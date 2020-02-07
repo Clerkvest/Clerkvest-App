@@ -8,6 +8,7 @@ import { DashboardComponent } from './ui/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'app', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'investment/:id', component: InvestmentComponent},
   {path: 'login', component: LoginComponent},
