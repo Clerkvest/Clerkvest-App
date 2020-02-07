@@ -25,7 +25,7 @@ import { LocalService } from '../cookie/local.service';
 @Injectable()
 export class LoginService {
 
-    protected basePath = 'http://127.0.0.1:8080/api';
+    protected basePath = 'http://clerkvest.com:8080/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

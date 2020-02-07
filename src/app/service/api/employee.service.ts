@@ -26,7 +26,7 @@ import { LocalService} from '../cookie/local.service';
 @Injectable()
 export class EmployeeService {
 
-    protected basePath = 'http://127.0.0.1:8080/api';
+    protected basePath = 'http://clerkvest.com:8080/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -76,7 +76,7 @@ export class EmployeeService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyQueryParam) required
-        queryParameters = queryParameters.set('api_key', this.local.get(Cookie.TOKEN));
+        queryParameters = queryParameters.set('api_key', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -127,7 +127,7 @@ export class EmployeeService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -171,7 +171,7 @@ export class EmployeeService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -179,7 +179,9 @@ export class EmployeeService {
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
+            headers = 
+                headers.set('Accept', httpHeaderAcceptSelected)
+                .set('Access-Control-Allow-Origin', '*');
         }
 
         // to determine the Content-Type header
@@ -215,7 +217,7 @@ export class EmployeeService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [

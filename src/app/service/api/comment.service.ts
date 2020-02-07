@@ -25,7 +25,7 @@ import { LocalService } from '../cookie/local.service';
 @Injectable()
 export class CommentService {
 
-    protected basePath = 'http://127.0.0.1:8080/api';
+    protected basePath = 'http://clerkvest.com:8080/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -73,7 +73,7 @@ export class CommentService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -123,7 +123,7 @@ export class CommentService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -167,7 +167,7 @@ export class CommentService {
         let headers = this.defaultHeaders;
 
         // authentication (APIKeyHeader) required
-        headers = headers.set('X-API-Key', this.local.get(Cookie.TOKEN));
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
@@ -180,6 +180,8 @@ export class CommentService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
+
+        console.log(`${this.basePath}/comment/${encodeURIComponent(String(projectId))}/comments`);
 
         return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comment/${encodeURIComponent(String(projectId))}/comments`,
             {
