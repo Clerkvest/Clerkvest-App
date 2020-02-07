@@ -180,9 +180,7 @@ export class CommentService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-
-        console.log(`${this.basePath}/comment/${encodeURIComponent(String(projectId))}/comments`);
-
+        
         return this.httpClient.get<Array<IProjectComment>>(`${this.basePath}/comment/${encodeURIComponent(String(projectId))}/comments`,
             {
                 withCredentials: this.configuration.withCredentials,
