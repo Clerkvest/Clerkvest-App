@@ -13,6 +13,8 @@ import { InvestmentComponent } from './ui/investment/investment.component';
 import { LoginComponent } from './ui/login/login.component';
 import { Error404Component } from './ui/error/error404/error404.component';
 import { ApiModule } from './service/api.module';
+import { CreateComponent } from './ui/create/create.component';
+import { UpdateComponent } from './ui/update/update.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ApiModule } from './service/api.module';
     InvestmentComponent,
     LoginComponent,
     Error404Component,
+    CreateComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,

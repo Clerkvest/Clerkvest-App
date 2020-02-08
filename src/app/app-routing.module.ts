@@ -1,3 +1,5 @@
+import { UpdateComponent } from './ui/update/update.component';
+import { CreateComponent } from './ui/create/create.component';
 import { Error404Component } from './ui/error/error404/error404.component';
 import { LoginComponent } from './ui/login/login.component';
 import { InvestmentComponent } from './ui/investment/investment.component';
@@ -11,6 +13,8 @@ const routes: Routes = [
   {path: 'app', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'investment/:id', component: InvestmentComponent},
+  {path: 'create', component: CreateComponent},
+  {path: 'update/:id', component: UpdateComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: Error404Component}
 ];

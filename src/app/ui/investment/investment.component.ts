@@ -61,7 +61,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   /**
    * List of employees
    */
-  public commentEmployees$: Observable<IEmployee>[] = [];
+  public commentEmployees$: Observable<IEmployee>[] = new Array;
 
   /**
    * Comment sub
