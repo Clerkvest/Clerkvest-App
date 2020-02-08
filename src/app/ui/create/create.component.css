@@ -139,3 +139,81 @@
         padding-top: 15px;
     }
 }
+
+/* Card Preview */
+.card-block { 
+    background-color: #ffffff; 
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.card-content { 
+    text-align: left; 
+}
+
+.card-title { 
+    margin-bottom: 5px; 
+    text-transform: uppercase; 
+}
+
+.card-desc { 
+    display: block; 
+    letter-spacing: 1px; 
+    margin-bottom: 15px; 
+    font-size: 12px; 
+}
+
+.card-img > img { 
+    width: 100%; 
+    margin-bottom: 30px; 
+}
+
+.raised-goal-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.raised-text {
+    color: rgb(7, 71, 166);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; 
+}
+
+.goal-text {
+    color: rgb(7, 71, 166);
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; 
+}
+
+.progress {
+    border-radius: 0;
+}
+
+.progress-bar {
+    background-color: rgb(7, 71, 166);
+}
+
+.card-button {
+    margin-top: 1rem;
+    text-transform: uppercase; 
+
+    border-color: rgb(7, 71, 166);
+    color: rgb(7, 71, 166);
+}
+
+.card-button:active{
+    background-color: rgb(7, 71, 166);
+    color: white;
+}
+    
+.card-button:hover{
+    background-color: rgb(7, 71, 166);
+    color: white;
+}
+.card-button:focus{
+    background-color: rgb(7, 71, 166);
+    color: white;
+    outline: none;
+}

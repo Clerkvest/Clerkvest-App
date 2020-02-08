@@ -6,7 +6,9 @@
         <div class="col-3">
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Input</a>
-            <a class="nav-link" id="v-pills-preview-tab" data-toggle="pill" href="#v-pills-preview" role="tab" aria-controls="v-pills-preview" aria-selected="false">Preview</a>
+            <span class="margin-text-left margin-text-top">Preview</span>
+            <a class="nav-link" id="v-pills-preview-tab" data-toggle="pill" href="#v-pills-preview" role="tab" aria-controls="v-pills-preview" aria-selected="false">Normal</a>
+            <a class="nav-link" id="v-pills-small-tab" data-toggle="pill" href="#v-pills-small" role="tab" aria-controls="v-pills-small" aria-selected="false">Small</a>
           </div>
         </div>
         <div class="col-9">
@@ -77,6 +79,34 @@
                             <p class="comment-text">Example comment text</p>
                         </div>
                         <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-small" role="tabpanel" aria-labelledby="v-pills-preview-tab">
+                <div class="col-md-4 mb30">
+                    <div class="card-block shadow-sm">
+                        <div class="card-img">
+                            <img src="http://via.placeholder.com/296x211">
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-title">{{buffObject.title}}</h5>
+                            <p class="card-desc">{{buffObject.description}}</p>
+                            <div class="raised-goal-container">
+                                <span>
+                                    <span class="raised-text">Raised: </span>
+                                    <span class="raised-value">{{buffObject.investedIn}}€</span>
+                                </span>
+                                <span>
+                                    <span class="goal-text">Goal: </span>
+                                    <span class="goal-value">{{buffObject.goal}}€</span>
+                                </span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style.width.%]="0">{{((buffObject.investedIn / buffObject.goal) * 100)}}%
+                                </div>
+                                </div>
+                            <button type="button" class="btn btn-outline-primary card-button">View details</button>
+                        </div>
                     </div>
                 </div>
             </div>
