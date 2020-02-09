@@ -41,6 +41,16 @@
     font-size: 12px;
 }
 
+.success {
+    color: green;
+    font-size: 12px;
+}
+
+.failure {
+    color: red;
+    font-size: 12px;
+}
+
 /* Preview */
 .img-preview {
     max-width: 100%

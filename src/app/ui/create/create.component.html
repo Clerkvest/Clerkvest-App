@@ -37,6 +37,8 @@
                     </div>
                     <br>
                     <button type="button" class="btn btn-outline-primary fire-button" (click)="fire()">Create now</button>
+                    <p class="margin-text-top success" *ngIf="hasCreated != undefined && hasCreated">Project successfully created.</p>
+                    <p class="margin-text-top failure" *ngIf="hasCreated != undefined && !hasCreated">Project failed to create. {{errorString}}</p>
                 </form>
             </div>
             <div class="tab-pane fade" id="v-pills-preview" role="tabpanel" aria-labelledby="v-pills-preview-tab">

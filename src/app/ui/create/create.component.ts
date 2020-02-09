@@ -36,6 +36,21 @@ export class CreateComponent implements OnInit, OnDestroy {
    */
   creator$: Observable<IEmployee>;
 
+  /**
+   * Creator subscription
+   */
+  creatorSub: Subscription;
+
+  /**
+   * Has project successfully created
+   */
+  hasCreated: boolean;
+
+  /**
+   * Error string
+   */
+  errorString: string = "";
+
   // Bools
   isLinkThere: boolean = true;
   isTitleThere: boolean = true;
@@ -64,16 +79,16 @@ export class CreateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.buffObject = new class implements IProject{
       id: number = 0;
-      employeeId: number;
+      employeeId: number = 0;
+      companyId: number = 0;
       link: string = "";
       title: string = "";
       description: string = "";
-      goal: number = 0;
+      goal: number = 1;
       investedIn: number = 0;
       reached: boolean = false;
-      image: string = "";
+      image: number = 0;
       createdAt: Date = new Date;
-      fundedAt: Date = new Date;
     }
 
     this.buffObject.employeeId = this.localService.getAsInteger(Cookie.ID);
@@ -86,6 +101,7 @@ export class CreateComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(): void {
     this.projectSub.unsubscribe();
+    this.creatorSub.unsubscribe();
   }
 
   /**
@@ -127,8 +143,8 @@ export class CreateComponent implements OnInit, OnDestroy {
         }
         break;
       case 'inputImage': 
-        this.buffObject.image = "event.target.value;";
-        if (this.buffObject.image.length == 0) {
+        this.buffObject.image = 0;
+        if (this.buffObject.image == 0) {
           this.isImageThere = false;
         } else {
           this.isImageThere = true;
@@ -141,11 +157,22 @@ export class CreateComponent implements OnInit, OnDestroy {
    * Sends the API calls to create a project
    */
   public fire() {
-    this.projectSub = this.projectService.addProject(this.buffObject)
-      .subscribe(
-        project => {console.log(project)},
-        error => {console.log(error)
-          console.log(this.buffObject)},
-      );
+    this.creatorSub = this.employeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID))
+      .subscribe(e => { 
+        this.buffObject.companyId = e.company;
+        
+        this.projectSub = this.projectService.addProject(this.buffObject)
+          .subscribe(
+            project => { 
+              this.hasCreated = true;
+            },
+            error => {
+              this.hasCreated = false;
+              this.errorString = error.status + " " + error.error.error;
+              console.log(error)
+              console.log(this.buffObject);
+            },
+          );
+      });
   }
 }
