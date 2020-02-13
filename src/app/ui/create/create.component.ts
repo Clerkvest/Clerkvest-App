@@ -169,8 +169,6 @@ export class CreateComponent implements OnInit, OnDestroy {
             error => {
               this.hasCreated = false;
               this.errorString = error.status + " " + error.error.error;
-              console.log(error)
-              console.log(this.buffObject);
             },
           );
       });
