@@ -80,6 +80,29 @@
     color: rgb(90, 90, 90);
 }
 
+.custom-button {
+    margin-top: 1rem;
+    text-transform: uppercase; 
+
+    border-color: rgb(7, 71, 166);
+    color: rgb(7, 71, 166);
+}
+
+.custom-button:active{
+    background-color: rgb(7, 71, 166);
+    color: white;
+}
+    
+.custom-button:hover{
+    background-color: rgb(7, 71, 166);
+    color: white;
+}
+.custom-button:focus{
+    background-color: rgb(7, 71, 166);
+    color: white;
+    outline: none;
+}
+
 @media only screen and (max-width: 768px) {
     .creator {
         padding-top: 15px;

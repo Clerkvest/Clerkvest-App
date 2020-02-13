@@ -48,6 +48,7 @@
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)">{{((project.investedIn / project.goal) * 100)}}%</div>
                 </div>
+                <button type="button" class="btn btn-outline-primary custom-button" (click)="editProject(project)" *ngIf="isOwner(project)">Edit</button>
             </div>
         </div>
     </div>

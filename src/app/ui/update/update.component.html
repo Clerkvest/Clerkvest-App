@@ -1,1 +1,118 @@
-<p>update works!</p>
+<div class="container" *ngIf="hasLoaded">
+    <div class="row">
+        <h2 class="component-title">Update investment</h2>
+    </div>
+    <div class="row">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Input</a>
+            <span class="margin-text-left margin-text-top">Preview</span>
+            <a class="nav-link" id="v-pills-preview-tab" data-toggle="pill" href="#v-pills-preview" role="tab" aria-controls="v-pills-preview" aria-selected="false">Normal</a>
+            <a class="nav-link" id="v-pills-small-tab" data-toggle="pill" href="#v-pills-small" role="tab" aria-controls="v-pills-small" aria-selected="false">Small</a>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <form>
+                    <div class="form-group">
+                        <input class="input" id="inputLink" type="text" class="form-field" placeholder=" " [value]="project.link" (focusout)="focusoutHandler($event)">
+                        <label for="inputLink" class="form-label">Product link</label>
+                        <span class="required" *ngIf="!isLinkThere"> This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" id="inputTitle" type="text" class="form-field" placeholder=" " [value]="project.title" (focusout)="focusoutHandler($event)">
+                        <label for="inputTitle" class="form-label">Title</label>
+                        <span class="required" *ngIf="!isTitleThere"> This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="inputDescription" class="form-field" placeholder=" " rows="6" [value]="project.description" (focusout)="focusoutHandler($event)"></textarea>
+                        <label for="inputDescription" class="form-label">Description</label>
+                        <span class="required" *ngIf="!isDescriptionThere"> This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="input" id="inputGoal" type="number" class="form-field" placeholder=" " [value]="project.goal" (focusout)="focusoutHandler($event)">
+                        <label for="inputGoal" class="form-label">Goal</label>
+                        <span class="required" *ngIf="!isGoalThere"> This field is required/unvalid</span>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-outline-primary fire-button" (click)="fire()">Update now</button>
+                    <p class="margin-text-top success" *ngIf="hasUpdated != undefined && hasUpdated">Project successfully updated.</p>
+                    <p class="margin-text-top failure" *ngIf="hasUpdated != undefined && !hasUpdated">Project failed to updated. {{errorString}}</p>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="v-pills-preview" role="tabpanel" aria-labelledby="v-pills-preview-tab">
+                <div class="row">
+                    <div class="col-md-8">
+                        <img class="rounded mx-auto d-block img-preview" src="http://via.placeholder.com/850x530">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="creator">
+                            <img class="rounded-circle" src="http://via.placeholder.com/65x65">
+                            <span class="creator-text margin-text-left">{{(creator$ | async)?.firstname}} {{(creator$ | async)?.lastname}}</span>
+                        </div>
+                        <div class="funding">
+                            <div class="raised-goal-container">
+                                <span>
+                                  <span class="raised-text">Raised: </span>
+                                  <span class="raised-value">{{project.investedIn}}€</span>
+                                </span>
+                                <span>
+                                  <span class="goal-text">Goal: </span>
+                                  <span class="goal-value">{{project.goal}}€</span>
+                                </span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style.width.%]="0">{{((project.investedIn / project.goal) * 100)}}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-text-top">
+                    <div class="col-md-8">
+                        <h1 class="title">{{project.title}}</h1>
+                        <p class="desc">{{project.description}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Comments</h3>
+                        <div class="comment">
+                            <img class="rounded-circle" src="http://via.placeholder.com/35x35">
+                            <span class="comment-creator margin-text-left">USERNAME</span>
+                            <p class="comment-text">Example comment text</p>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-small" role="tabpanel" aria-labelledby="v-pills-preview-tab">
+                <div class="col-md-4 mb30">
+                    <div class="card-block shadow-sm">
+                        <div class="card-img">
+                            <img src="http://via.placeholder.com/296x211">
+                        </div>
+                        <div class="card-content">
+                            <h5 class="card-title">{{project.title}}</h5>
+                            <p class="card-desc">{{project.description}}</p>
+                            <div class="raised-goal-container">
+                                <span>
+                                    <span class="raised-text">Raised: </span>
+                                    <span class="raised-value">{{project.investedIn}}€</span>
+                                </span>
+                                <span>
+                                    <span class="goal-text">Goal: </span>
+                                    <span class="goal-value">{{project.goal}}€</span>
+                                </span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style.width.%]="0">{{((project.investedIn / project.goal) * 100)}}%
+                                </div>
+                                </div>
+                            <button type="button" class="btn btn-outline-primary card-button">View details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

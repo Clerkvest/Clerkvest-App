@@ -5,9 +5,11 @@ import { ProjectService } from './../../service/api/project.service';
 import { EmployeeService } from 'src/app/service/api/employee.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LocalService } from 'src/app/service/cookie/local.service';
 import { IProject, IEmployee, IProjectComment } from 'src/app/model/models';
-import { isNumber } from 'util';
+import { isNumber, isUndefined, isNullOrUndefined } from 'util';
+import { Cookie } from 'src/app/enumeration/cookie.enum';
 
 /**
  * @author Danny B.
@@ -134,8 +136,13 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    * Unsubscribes all subscriptions
    */
   ngOnDestroy(): void {
-    this.projectSub.unsubscribe();
-    this.commentsSub.unsubscribe();
+    if(!isNullOrUndefined(this.projectSub)) {
+      this.projectSub.unsubscribe();
+    }
+
+    if(!isNullOrUndefined(this.commentsSub)) {
+      this.commentsSub.unsubscribe();
+    }
   }
 
   /**
@@ -153,5 +160,20 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    */
   calculateState(project: IProject) {
     this.projectState = this.calculatePercent(project) > 80;
+  }
+
+  /**
+   * Navigates to the edit page of the project
+   * @param project Project to update
+   */
+  editProject(project: IProject) {
+    this.router.navigate(['update', project.id]);
+  }
+
+  /**
+   * Checks if the current user is the creator of the project
+   */
+  isOwner(project: IProject){
+    return project.employeeId === this.localService.getAsInteger(Cookie.ID);
   }
 }
