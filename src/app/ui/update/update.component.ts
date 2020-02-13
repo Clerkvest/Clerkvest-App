@@ -25,12 +25,34 @@ export class UpdateComponent implements OnInit, OnDestroy {
    */
   idParam: string = "";
 
+  /** 
+   * Project observable
+   */
   project$: Observable<IProject>;
+
+  /**
+   * Project object
+   */
   project: IProject;
+
+  /**
+   * Project sub
+   */
   projectSub: Subscription;
 
+  /**
+   * Creator observable
+   */
   creator$: Observable<IEmployee>;
+
+  /**
+   * Creater object
+   */
   creator: IEmployee;
+
+  /**
+   * Creator sub
+   */
   creatorSub: Subscription;
 
   /**
