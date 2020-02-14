@@ -35,6 +35,10 @@ body {
     margin-right: 5px
 }
 
+.margin-px-bottom-lg {
+    margin-bottom: 15px;
+}
+
 .text-color-white {
     color: var(--white);
 }

@@ -13,6 +13,10 @@
     color: white; 
 }
 
+.nav > .active {
+    background-color: rgb(7, 71, 166);
+}
+
 .fire-button {
     margin-top: 1rem;
     text-transform: uppercase; 

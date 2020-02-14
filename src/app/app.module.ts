@@ -15,6 +15,7 @@ import { Error404Component } from './ui/error/error404/error404.component';
 import { ApiModule } from './service/api.module';
 import { CreateComponent } from './ui/create/create.component';
 import { UpdateComponent } from './ui/update/update.component';
+import { ProfileComponent } from './ui/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { UpdateComponent } from './ui/update/update.component';
     Error404Component,
     CreateComponent,
     UpdateComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
