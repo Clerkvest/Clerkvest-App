@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
    */
   public focusoutHandler(event) {
     switch (event.target.id) {
-      case 'inputLink': 
+      case 'inputFirstname': 
         this.myself.firstname = event.target.value;
         if (this.myself.firstname.length == 0) {
           this.isFirstnameThere = false;
@@ -101,7 +101,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isFirstnameThere = true;
         }
         break;
-      case 'inputTitle': 
+      case 'inputLastname': 
         this.myself.lastname = event.target.value;
         if (this.myself.lastname.length == 0) {
           this.isLastnameThere = false;
@@ -109,7 +109,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isLastnameThere = true;
         }
         break;
-      case 'inputDescription': 
+      case 'inputNickname': 
         this.myself.nickname = event.target.value;
         if (this.myself.nickname.length == 0) {
           this.isNicknameThere = false;
@@ -124,8 +124,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
    * Sends the API calls to update a profile
    */
   public fire() {
+    console.log(this.myself);
     this.employeeService.updateEmployee(this.myself).subscribe(
       ret => {
+        console.log(ret);
         this.hasUpdated = true;
       }, 
       error => {
