@@ -1,4 +1,4 @@
-<div class="container" *ngIf="doesExist && project !== null">
+<div class="container" *ngIf="project !== null">
     <div class="row">
         <h2 class="component-title">
             Investment
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <img class="rounded mx-auto d-block img-preview" src="http://via.placeholder.com/850x530">
+            <img class="rounded mx-auto d-block img-preview" [src]="safeUrl">
         </div>
         <div class="col-md-4">
             <div class="creator">

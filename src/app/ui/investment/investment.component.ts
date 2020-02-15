@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/service/api/image.service';
 import { Observable, Subscription } from 'rxjs';
 import { InvestService } from './../../service/api/invest.service';
 import { CommentService } from './../../service/api/comment.service';
@@ -10,6 +11,7 @@ import { LocalService } from 'src/app/service/cookie/local.service';
 import { IProject, IEmployee, IProjectComment } from 'src/app/model/models';
 import { isNumber, isUndefined, isNullOrUndefined } from 'util';
 import { Cookie } from 'src/app/enumeration/cookie.enum';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 /**
  * @author Danny B.
@@ -71,6 +73,16 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public commentsSub: Subscription;
 
   /**
+   * Image sub
+   */
+  public imageSub: Subscription;
+
+  /**
+   * SafeUrl
+   */
+  public safeUrl: SafeUrl;
+
+  /**
    * Current url id param
    */
   public idParam: string;
@@ -78,7 +90,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   /**
    * True if investment exists and user is allowed to view.
    */
-  public doesExist: boolean = false;
+  public doesExist: boolean;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -97,7 +109,9 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private commentService: CommentService,
     private employeeService: EmployeeService,
-    private investService: InvestService
+    private imageService: ImageService,
+    private investService: InvestService,
+    private sanitizer: DomSanitizer
   ) { }
 
   /**
@@ -120,7 +134,13 @@ export class InvestmentComponent implements OnInit, OnDestroy {
       this.creator$ = this.employeeService.getEmployeeById(this.project.employeeId);
       this.comments$ = this.commentService.getComments(this.project.id);
 
-      this.comments$.subscribe(comments => {
+      if(project.image !== null) {
+        this.imageSub = this.imageService.getImageUsingGET(project.image).subscribe(image => {
+          this.safeUrl = this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64," + image);
+        });
+      }
+
+      this.commentsSub = this.comments$.subscribe(comments => {
         this.comments = comments;
 
         comments.forEach(single => {

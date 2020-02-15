@@ -337,13 +337,13 @@ export class ImageService {
         }
 
         let headers = this.defaultHeaders;
-        
+
         // authentication (APIKeyHeader) required
         headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'text/plain'
+          'text/plain'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -352,6 +352,7 @@ export class ImageService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+          'text/plain'
         ];
 
         return this.httpClient.get<string>(`${this.basePath}/image/get/${encodeURIComponent(String(id))}`,
@@ -360,8 +361,9 @@ export class ImageService {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
-                reportProgress: reportProgress
-            }
+                reportProgress: reportProgress,
+                responseType: 'text' as 'json'
+            },
         );
     }
 

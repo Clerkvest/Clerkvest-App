@@ -188,6 +188,7 @@ export class CreateComponent implements OnInit, OnDestroy {
               this.hasCreated = true;
               this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
                 ret => {
+                  console.log("Upload finished.");
                   this.hasCreated = true;
                 },
                 error => {
