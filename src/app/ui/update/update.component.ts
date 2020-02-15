@@ -1,3 +1,4 @@
+import { ImageService } from './../../service/api/image.service';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -56,6 +57,16 @@ export class UpdateComponent implements OnInit, OnDestroy {
   creatorSub: Subscription;
 
   /**
+   * Buff file
+   */
+  fileToUpload: File = null;
+
+  /**
+   * File upload sub
+   */
+  fileSub: Subscription;
+
+  /**
    * Error string
    */
   errorString: string = "";
@@ -83,6 +94,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private localService: LocalService,
     private projectService: ProjectService,
     private employeeService: EmployeeService,
+    private imageService: ImageService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -175,12 +187,24 @@ export class UpdateComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * File change event
+   * @param files Files to update. Takes the first only
+   */
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  /**
    * Sends the API calls to update a project
    */
   public fire() {
     this.projectService.updateProject(this.project).subscribe(
       ret => {
         this.hasUpdated = true;
+        this.imageService.createProjectImageUsingPOST(this.fileToUpload, Number.parseInt(this.idParam)).subscribe(
+          ret => {
+            console.log(ret);
+        })
       },
       error => {
         this.hasUpdated = false;

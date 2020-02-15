@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProjectService, EmployeeService } from 'src/app/service/api/api';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IEmployee } from 'src/app/model/models';
+import { ImageService } from 'src/app/service/api/image.service';
 
 /**
  * @author Danny B.
@@ -42,6 +43,16 @@ export class CreateComponent implements OnInit, OnDestroy {
   creatorSub: Subscription;
 
   /**
+   * Buff file
+   */
+  fileToUpload: File = null;
+
+  /**
+   * File upload sub
+   */
+  fileSub: Subscription;
+
+  /**
    * Has project successfully created
    */
   hasCreated: boolean;
@@ -70,6 +81,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     private localService: LocalService,
     private projectService: ProjectService,
     private employeeService: EmployeeService,
+    private imageService: ImageService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -102,6 +114,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.projectSub.unsubscribe();
     this.creatorSub.unsubscribe();
+    this.fileSub.unsubscribe();
   }
 
   /**
@@ -154,17 +167,33 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * File change event
+   * @param files Files to update. Takes the first only
+   */
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  /**
    * Sends the API calls to create a project
    */
   public fire() {
     this.creatorSub = this.employeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID))
       .subscribe(e => { 
-        this.buffObject.companyId = e.company;
-        
+        this.buffObject.companyId = e.companyId;
+
         this.projectSub = this.projectService.addProject(this.buffObject)
           .subscribe(
             project => { 
               this.hasCreated = true;
+              this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
+                ret => {
+                  this.hasCreated = true;
+                },
+                error => {
+                  this.hasCreated = false;
+                  this.errorString = "Upload error: " + error.status + " " + error.error.error;
+                });
             },
             error => {
               this.hasCreated = false;

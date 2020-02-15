@@ -35,6 +35,12 @@
                         <label for="inputGoal" class="form-label">Goal</label>
                         <span class="required" *ngIf="!isGoalThere"> This field is required/unvalid</span>
                     </div>
+                    <div class="form-group">
+                        <label for="file">Choose File</label>
+                        <input type="file"
+                               id="file"
+                               (change)="handleFileInput($event.target.files)">
+                    </div>
                     <br>
                     <button type="button" class="btn btn-outline-primary fire-button" (click)="fire()">Create now</button>
                     <p class="margin-text-top success" *ngIf="hasCreated != undefined && hasCreated">Project successfully created.</p>

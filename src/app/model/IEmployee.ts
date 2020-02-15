@@ -14,7 +14,7 @@ import {ICompany} from './ICompany';
 
 export interface IEmployee {
     id?: number;
-    company?: number;
+    companyId?: number;
     email?: string;
     balance?: number;
     token?: string;
