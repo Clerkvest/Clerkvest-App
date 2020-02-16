@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
 import { IProject } from '../../model/IProject';
 import { Cookie } from '../../enumeration/cookie.enum';
 import { LocalService } from '../cookie/local.service';
+import { IProjectImage } from 'src/app/model/IProjectImage';
 
 
 @Injectable()
@@ -198,9 +199,9 @@ export class ProjectService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProjects(observe?: 'body', reportProgress?: boolean): Observable<Array<IProject>>;
-    public getProjects(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<IProject>>>;
-    public getProjects(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<IProject>>>;
+    public getProjects(observe?: 'body', reportProgress?: boolean): Observable<Array<IProjectImage>>;
+    public getProjects(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<IProjectImage>>>;
+    public getProjects(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<IProjectImage>>>;
     public getProjects(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -220,7 +221,7 @@ export class ProjectService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<IProject>>(`${this.basePath}/project/all`,
+        return this.httpClient.get<Array<IProjectImage>>(`${this.basePath}/project/all/image`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

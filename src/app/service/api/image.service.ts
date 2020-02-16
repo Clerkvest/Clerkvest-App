@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { LocalService } from './../cookie/local.service';
 /**
  * Api Documentation
@@ -364,6 +365,94 @@ export class ImageService {
                 reportProgress: reportProgress,
                 responseType: 'text' as 'json'
             },
+        );
+    }
+
+        /**
+     * getImageStream
+     * 
+     * @param id id
+     * @param accountNonExpired 
+     * @param accountNonLocked 
+     * @param authorities0Authority 
+     * @param companyId 
+     * @param credentialsNonExpired 
+     * @param employeeId 
+     * @param enabled 
+     * @param password 
+     * @param token 
+     * @param username 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getImageStreamUsingGET(id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getImageStreamUsingGET(id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getImageStreamUsingGET(id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getImageStreamUsingGET(id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getImageStreamUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (accountNonExpired !== undefined && accountNonExpired !== null) {
+            queryParameters = queryParameters.set('accountNonExpired', <any>accountNonExpired);
+        }
+        if (accountNonLocked !== undefined && accountNonLocked !== null) {
+            queryParameters = queryParameters.set('accountNonLocked', <any>accountNonLocked);
+        }
+        if (authorities0Authority !== undefined && authorities0Authority !== null) {
+            queryParameters = queryParameters.set('authorities[0].authority', <any>authorities0Authority);
+        }
+        if (companyId !== undefined && companyId !== null) {
+            queryParameters = queryParameters.set('companyId', <any>companyId);
+        }
+        if (credentialsNonExpired !== undefined && credentialsNonExpired !== null) {
+            queryParameters = queryParameters.set('credentialsNonExpired', <any>credentialsNonExpired);
+        }
+        if (employeeId !== undefined && employeeId !== null) {
+            queryParameters = queryParameters.set('employeeId', <any>employeeId);
+        }
+        if (enabled !== undefined && enabled !== null) {
+            queryParameters = queryParameters.set('enabled', <any>enabled);
+        }
+        if (password !== undefined && password !== null) {
+            queryParameters = queryParameters.set('password', <any>password);
+        }
+        if (token !== undefined && token !== null) {
+            queryParameters = queryParameters.set('token', <any>token);
+        }
+        if (username !== undefined && username !== null) {
+            queryParameters = queryParameters.set('username', <any>username);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (APIKeyHeader) required
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<any>(`${this.basePath}/image/get/${encodeURIComponent(String(id))}/stream`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress,
+                responseType: 'text' as 'json'
+            }
         );
     }
 

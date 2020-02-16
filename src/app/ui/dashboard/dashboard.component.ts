@@ -1,8 +1,11 @@
+import { ImageService } from './../../service/api/image.service';
 import { ProjectService } from './../../service/api/project.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IProject } from 'src/app/model/models';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { IProjectImage } from 'src/app/model/IProjectImage';
 
 /**
  * @author Danny B.
@@ -17,25 +20,32 @@ import { IProject } from 'src/app/model/models';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-
+export class DashboardComponent implements OnInit, OnDestroy {
   /**
    * Observable to store all project that the employee got access to.
    */
-  public projects$: Observable<IProject[]>;
+  public projects$: Observable<IProjectImage[]>;
 
   /**
    * Creates an instance of DashboardComponent with all needed services.
    * @param router Router to change between pages.
    * @param project ProjectService to get all project the employee got access to.
    */
-  constructor(private router: Router, private projectService: ProjectService) { }
+  constructor(
+    private router: Router,
+    private projectService: ProjectService,
+    private imageService: ImageService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   /**
    * Initializes all required observables
    */
   ngOnInit() {
     this.projects$ = this.projectService.getProjects();
+  }
+
+  ngOnDestroy(): void {
   }
 
   /**
@@ -54,5 +64,9 @@ export class DashboardComponent implements OnInit {
    */
   openProject(project: IProject): void {
     this.router.navigate(['investment', project.id]);
+  }
+
+  convertToBase64(image: string) {
+    return this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64," + image);
   }
 }
