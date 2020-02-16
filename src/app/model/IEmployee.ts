@@ -9,9 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import {ICompany} from './ICompany';
-
-
 export interface IEmployee {
     id?: number;
     companyId?: number;
@@ -21,5 +18,5 @@ export interface IEmployee {
     firstname?: string;
     lastname?: string;
     nickname?: string;
-    isAdmin?: boolean;
+    admin?: boolean;
 }

@@ -177,8 +177,8 @@ export class CompanyService {
 
         let headers = this.defaultHeaders;
 
-        // authentication (APIKeyQueryParam) required
-        queryParameters = queryParameters.set('api_key', 'Bearer '  + this.local.get(Cookie.TOKEN));
+        // authentication (APIKeyHeader) required
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [

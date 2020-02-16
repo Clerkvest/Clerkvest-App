@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'Clerkvest-App';
 
   constructor(private local:LocalService){
-    this.local.set(Cookie.TOKEN, 'exampleToken0');
-    this.local.set(Cookie.ID, '0');
+    this.local.set(Cookie.TOKEN, 'exampleToken1');
+    this.local.set(Cookie.ID, '1');
   }
 }
