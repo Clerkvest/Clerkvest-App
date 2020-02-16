@@ -1,3 +1,4 @@
+import { IInvestIn } from './../../model/IInvestIn';
 import { ImageService } from 'src/app/service/api/image.service';
 import { Observable, Subscription } from 'rxjs';
 import { InvestService } from './../../service/api/invest.service';
@@ -83,6 +84,11 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public safeUrl: SafeUrl;
 
   /**
+   * Invest
+   */
+  public invest: IInvestIn;
+
+  /**
    * Current url id param
    */
   public idParam: string;
@@ -91,6 +97,15 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    * True if investment exists and user is allowed to view.
    */
   public doesExist: boolean;
+
+  /**
+   * Error string
+   */
+  public errorString: string;
+
+  // Bools
+  public isInvestThere: boolean;
+  public hasInvested: boolean;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -150,6 +165,13 @@ export class InvestmentComponent implements OnInit, OnDestroy {
         this.doesExist = true;
       });
     })
+
+    this.invest = new class implements IInvestIn{
+      id?: number;
+      projectId?: number;
+      employeeId?: number;
+      investment?: number;
+    }
   }
 
   /**
@@ -195,5 +217,43 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    */
   isOwner(project: IProject){
     return project.employeeId === this.localService.getAsInteger(Cookie.ID);
+  }
+
+  /**
+   * Invests into a project
+   * @param project Project to invest into
+   */
+  investInto(project: IProject) {
+    this.invest.projectId = this.project.id;
+    this.invest.employeeId = this.localService.getAsInteger(Cookie.ID);
+    let investSub = this.investService.addInvestment(this.invest).subscribe(
+      ret => {
+        this.hasInvested = true;
+      },
+      error => {
+        this.hasInvested = false;
+        this.errorString = error.status + " " + error.error.error;
+      },
+      () => {
+        investSub.unsubscribe();
+      }
+    );
+  }
+
+    /**
+   * Sets the inputs values into the buffer object
+   * @param event The event
+   */
+  public focusoutHandler(event) {
+    switch (event.target.id) {
+      case 'inputInvest': 
+        this.invest.investment = event.target.value;
+        if (this.invest.investment <= 0) {
+          this.isInvestThere = false;
+        } else {
+          this.isInvestThere = true;
+        }
+        break;
+    }
   }
 }

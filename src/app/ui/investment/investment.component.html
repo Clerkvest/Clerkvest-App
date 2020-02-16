@@ -1,4 +1,4 @@
-<div class="container" *ngIf="project !== null">
+<div class="container" *ngIf="project != null">
     <div class="row">
         <h2 class="component-title">
             Investment
@@ -49,6 +49,14 @@
                     <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)">{{((project.investedIn / project.goal) * 100)}}%</div>
                 </div>
                 <button type="button" class="btn btn-outline-primary custom-button" (click)="editProject(project)" *ngIf="isOwner(project)">Edit</button>
+                <div class="form-group">
+                    <input class="input" id="inputInvest" type="number" class="form-field" placeholder=" " (focusout)="focusoutHandler($event)">
+                    <label for="inputInvest" class="form-label">Invest</label>
+                    <span class="required" *ngIf="isInvestThere != null && !isInvestThere"> This field is required/unvalid</span>
+                </div>
+                <button type="button" class="btn btn-outline-primary custom-button" (click)="investInto(project)">Invest</button>
+                <p class="margin-text-top success" *ngIf="hasInvested != undefined && hasInvested">Successfully invested</p>
+                <p class="margin-text-top failure" *ngIf="hasInvested != undefined && !hasInvested">Failed to invest. {{errorString}}</p>
             </div>
         </div>
     </div>

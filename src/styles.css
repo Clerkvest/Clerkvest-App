@@ -58,6 +58,21 @@ body {
     text-transform: uppercase; 
 }
 
+.required {
+    color: red;
+    font-size: 12px;
+}
+
+.success {
+    color: green;
+    font-size: 12px;
+}
+
+.failure {
+    color: red;
+    font-size: 12px;
+}
+
 /* Loading anim */
 .app-loading {
     position: relative;

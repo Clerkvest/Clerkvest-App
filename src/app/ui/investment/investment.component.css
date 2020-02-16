@@ -83,6 +83,7 @@
 .custom-button {
     margin-top: 1rem;
     text-transform: uppercase; 
+    width: 100%;
 
     border-color: rgb(7, 71, 166);
     color: rgb(7, 71, 166);
