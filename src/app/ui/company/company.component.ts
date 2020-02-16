@@ -7,6 +7,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICompany, IEmployee } from 'src/app/model/models';
 import { Cookie } from 'src/app/enumeration/cookie.enum';
 import { isNullOrUndefined } from 'util';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 /**
  * @author Danny B.
@@ -52,9 +53,19 @@ export class CompanyComponent implements OnInit, OnDestroy {
   myselfSub: Subscription;
 
   /**
+   * Image url
+   */
+  safeUrl: SafeUrl;
+
+  /**
    * Image to upload
    */
   fileToUpload: File;
+
+  /**
+   * Image Sub
+   */
+  image$: Observable<string>;
 
   /**
    * Error string
@@ -85,7 +96,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
     private localService: LocalService,
     private employeeService: EmployeeService,
     private companyService: CompanyService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private sanitizer: DomSanitizer
   ) { }
 
   /**
@@ -96,6 +108,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
       this.myself = myself;
       this.companySub = this.companyService.getCompanyById(myself.companyId).subscribe(company => {
         this.company = company;
+        this.image$ = this.imageService.getImageUsingGET(this.company.image);
         this.hasLoaded = true;
       });
     });
@@ -156,6 +169,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
    */
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
+  }
+
+  /**
+   * Converts a string to a valid base64 string html can handle
+   * @param image Image to convert
+   */
+  convertToBase64(image: string) {
+    return this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64," + image);
   }
 
   /**

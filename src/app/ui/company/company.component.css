@@ -14,8 +14,7 @@
 }
 
 .company-img {
-    max-width: 90px;
-    max-height: 90px;
+    max-width: 100%;
 }
 
 .company-name {

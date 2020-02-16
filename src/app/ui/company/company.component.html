@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <img class="company-img margin-px-bottom-lg" src="http://via.placeholder.com/150x150">
+                <img class="company-img margin-px-bottom-lg" [src]="convertToBase64(image$ | async)">
                 <p class="company-name">{{company.name}}</p>
                 <p class="company-domain">{{company.domain}}</p>
                 <a class="nav-link active" id="v-pills-company-tab" data-toggle="pill" href="#v-pills-company" role="tab" aria-controls="v-pills-company" aria-selected="false">Profile</a>
