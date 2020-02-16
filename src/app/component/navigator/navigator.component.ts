@@ -48,10 +48,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.employee$ = this.EmployeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID));
-
-    this.employeeSub = this.employee$.subscribe(e => {
-      this.employee = e;
-    });
   }
 
   /**
@@ -62,11 +58,17 @@ export class NavigatorComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Opens the profile of the given employee
-   * @param employee Profile to open
+   * Opens the dashboard
+   */
+  openDashboard(): void {
+    this.router.navigate(['dashboard']);
+  }
+
+  /**
+   * Opens the profile
    */
   openProfile(): void {
-    this.router.navigate(['profile', this.employee.id]);
+    this.router.navigate(['myself']);
   }
 
   /**
@@ -76,6 +78,6 @@ export class NavigatorComponent implements OnInit, OnDestroy {
     this.localService.delete(Cookie.ID);
     this.localService.delete(Cookie.TOKEN);
 
-    window.location.href = 'http://clerkvest.de';
+    window.location.href = 'http://clerkvest.com';
   }
 }

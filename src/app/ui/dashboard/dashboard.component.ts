@@ -34,7 +34,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private projectService: ProjectService,
-    private imageService: ImageService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -45,7 +44,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.projects$ = this.projectService.getProjects();
   }
 
-  ngOnDestroy(): void {
+  /**
+   * Unsubs every sub
+   */
+  ngOnDestroy() {
   }
 
   /**
@@ -66,6 +68,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['investment', project.id]);
   }
 
+  /**
+   * Converts a string to a valid base64 string html can handle
+   * @param image Image to convert
+   */
   convertToBase64(image: string) {
     return this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64," + image);
   }

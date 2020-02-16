@@ -6,6 +6,10 @@
   color: #fff;
 }
 
+.nav-item {
+  cursor: pointer;
+}
+
 .dropdown-menu li a {
   color: black !important;
 }

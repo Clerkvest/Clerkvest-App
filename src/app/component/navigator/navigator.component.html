@@ -11,7 +11,7 @@
 	</div>
 	<div id="navbarCollapse" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav">
-			<li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+			<li class="nav-item"><a (click)="openDashboard()" class="nav-link">Dashboard</a></li>
 			<li class="nav-item"><a href="#" class="nav-link">Investment</a></li>
 			<li class="nav-item dropdown">
 				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
@@ -32,8 +32,8 @@
 			</li>
 			<li class="nav-item dropdown margin-text-right">
 				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
-					  <img src="../../../assets/doodle/icon/account.png" class="avatar-img rounded-circle margin-px-right-sm">
-					  {{(employee$ | async)?.email}}
+					<img src="../../../assets/doodle/icon/account.png" class="avatar-img rounded-circle margin-px-right-sm">
+					{{(employee$ | async)?.email}}
         		</a>
 				<ul class="dropdown-menu">
 					<li><a (click)="openProfile()" class="dropdown-item"><i class="fa fa-user-o"></i> Your Profile</a></li>
