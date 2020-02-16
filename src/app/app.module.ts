@@ -16,6 +16,7 @@ import { ApiModule } from './service/api.module';
 import { CreateComponent } from './ui/create/create.component';
 import { UpdateComponent } from './ui/update/update.component';
 import { ProfileComponent } from './ui/profile/profile.component';
+import { CompanyComponent } from './ui/company/company.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './ui/profile/profile.component';
     CreateComponent,
     UpdateComponent,
     ProfileComponent,
+    CompanyComponent,
   ],
   imports: [
     BrowserModule,

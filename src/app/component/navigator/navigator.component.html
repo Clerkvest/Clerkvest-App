@@ -36,7 +36,8 @@
 					{{(employee$ | async)?.email}}
         		</a>
 				<ul class="dropdown-menu">
-					<li><a (click)="openProfile()" class="dropdown-item"><i class="fa fa-user-o"></i> Your Profile</a></li>
+					<li><a (click)="openProfile()" class="dropdown-item"><i class="fa fa-user"></i> Your Profile</a></li>
+					<li><a (click)="openCompany()" class="dropdown-item"><i class="fa fa-building"></i> Your Company</a></li>
 					<li class="divider dropdown-divider"></li>
 					<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
 				</ul>

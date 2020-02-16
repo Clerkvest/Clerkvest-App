@@ -72,6 +72,13 @@ export class NavigatorComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Opens the company
+   */
+  openCompany(): void {
+    this.router.navigate(['company']);
+  }
+
+  /**
    * Logs the current user out.
    */
   logout(): void {

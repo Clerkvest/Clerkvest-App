@@ -1,3 +1,4 @@
+import { CompanyComponent } from './ui/company/company.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { CreateComponent } from './ui/create/create.component';
 import { Error404Component } from './ui/error/error404/error404.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create', component: CreateComponent},
   {path: 'myself', component: ProfileComponent},
+  {path: 'company', component: CompanyComponent},
   {path: 'login', component: LoginComponent},
   {path: 'app', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
