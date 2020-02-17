@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { Inject, Injectable, Optional } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 
 import { BASE_PATH } from '../variables';
 import { Configuration } from '../configuration';
@@ -20,6 +20,7 @@ import { IInvestIn } from '../../model/IInvestIn';
 import { Observable } from 'rxjs';
 import { Cookie } from '../../enumeration/cookie.enum';
 import { LocalService } from '../cookie/local.service';
+import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 
 @Injectable()
@@ -149,6 +150,98 @@ export class InvestService {
     }
 
     /**
+     * deleteInvestmentsByEmployeeAndProject
+     * 
+     * @param employeeId2 employeeId
+     * @param id id
+     * @param accountNonExpired 
+     * @param accountNonLocked 
+     * @param authorities0Authority 
+     * @param companyId 
+     * @param credentialsNonExpired 
+     * @param employeeId 
+     * @param enabled 
+     * @param password 
+     * @param token 
+     * @param username 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteInvestmentsByEmployeeAndProject(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'body', reportProgress?: boolean): Observable<string>;
+    public deleteInvestmentsByEmployeeAndProject(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<string>>;
+    public deleteInvestmentsByEmployeeAndProject(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<string>>;
+    public deleteInvestmentsByEmployeeAndProject(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (employeeId2 === null || employeeId2 === undefined) {
+            throw new Error('Required parameter employeeId2 was null or undefined when calling deleteInvestmentsByEmployeeAndProjectUsingDELETE.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling deleteInvestmentsByEmployeeAndProjectUsingDELETE.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (accountNonExpired !== undefined && accountNonExpired !== null) {
+            queryParameters = queryParameters.set('accountNonExpired', <any>accountNonExpired);
+        }
+        if (accountNonLocked !== undefined && accountNonLocked !== null) {
+            queryParameters = queryParameters.set('accountNonLocked', <any>accountNonLocked);
+        }
+        if (authorities0Authority !== undefined && authorities0Authority !== null) {
+            queryParameters = queryParameters.set('authorities[0].authority', <any>authorities0Authority);
+        }
+        if (companyId !== undefined && companyId !== null) {
+            queryParameters = queryParameters.set('companyId', <any>companyId);
+        }
+        if (credentialsNonExpired !== undefined && credentialsNonExpired !== null) {
+            queryParameters = queryParameters.set('credentialsNonExpired', <any>credentialsNonExpired);
+        }
+        if (employeeId !== undefined && employeeId !== null) {
+            queryParameters = queryParameters.set('employeeId', <any>employeeId);
+        }
+        if (enabled !== undefined && enabled !== null) {
+            queryParameters = queryParameters.set('enabled', <any>enabled);
+        }
+        if (password !== undefined && password !== null) {
+            queryParameters = queryParameters.set('password', <any>password);
+        }
+        if (token !== undefined && token !== null) {
+            queryParameters = queryParameters.set('token', <any>token);
+        }
+        if (username !== undefined && username !== null) {
+            queryParameters = queryParameters.set('username', <any>username);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (APIKeyHeader) required
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.delete<string>(`${this.basePath}/invest/delete/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Get a Investment by the Investment Id
      * Get a Investment by the Investment Id
      * @param investId Investment Id
@@ -234,4 +327,95 @@ export class InvestService {
         );
     }
 
+        /**
+     * getInvestmentAmountByProjectForEmployee
+     * 
+     * @param employeeId2 employeeId
+     * @param id id
+     * @param accountNonExpired 
+     * @param accountNonLocked 
+     * @param authorities0Authority 
+     * @param companyId 
+     * @param credentialsNonExpired 
+     * @param employeeId 
+     * @param enabled 
+     * @param password 
+     * @param token 
+     * @param username 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getInvestmentAmountByProjectForEmployee(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'body', reportProgress?: boolean): Observable<number>;
+    public getInvestmentAmountByProjectForEmployee(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<number>>;
+    public getInvestmentAmountByProjectForEmployee(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<number>>;
+    public getInvestmentAmountByProjectForEmployee(employeeId2: number, id: number, accountNonExpired?: boolean, accountNonLocked?: boolean, authorities0Authority?: string, companyId?: number, credentialsNonExpired?: boolean, employeeId?: number, enabled?: boolean, password?: string, token?: string, username?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (employeeId2 === null || employeeId2 === undefined) {
+            throw new Error('Required parameter employeeId2 was null or undefined when calling getInvestmentAmountByProjectForEmployeeUsingGET.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getInvestmentAmountByProjectForEmployeeUsingGET.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (accountNonExpired !== undefined && accountNonExpired !== null) {
+            queryParameters = queryParameters.set('accountNonExpired', <any>accountNonExpired);
+        }
+        if (accountNonLocked !== undefined && accountNonLocked !== null) {
+            queryParameters = queryParameters.set('accountNonLocked', <any>accountNonLocked);
+        }
+        if (authorities0Authority !== undefined && authorities0Authority !== null) {
+            queryParameters = queryParameters.set('authorities[0].authority', <any>authorities0Authority);
+        }
+        if (companyId !== undefined && companyId !== null) {
+            queryParameters = queryParameters.set('companyId', <any>companyId);
+        }
+        if (credentialsNonExpired !== undefined && credentialsNonExpired !== null) {
+            queryParameters = queryParameters.set('credentialsNonExpired', <any>credentialsNonExpired);
+        }
+        if (employeeId !== undefined && employeeId !== null) {
+            queryParameters = queryParameters.set('employeeId', <any>employeeId);
+        }
+        if (enabled !== undefined && enabled !== null) {
+            queryParameters = queryParameters.set('enabled', <any>enabled);
+        }
+        if (password !== undefined && password !== null) {
+            queryParameters = queryParameters.set('password', <any>password);
+        }
+        if (token !== undefined && token !== null) {
+            queryParameters = queryParameters.set('token', <any>token);
+        }
+        if (username !== undefined && username !== null) {
+            queryParameters = queryParameters.set('username', <any>username);
+        }
+
+        let headers = this.defaultHeaders;
+        
+        // authentication (APIKeyHeader) required
+        headers = headers.set('Authorization', 'Bearer '  + this.local.get(Cookie.TOKEN));
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<number>(`${this.basePath}/invest/get/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId))}`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 }
