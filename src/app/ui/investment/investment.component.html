@@ -49,6 +49,7 @@
                     <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)">{{((project.investedIn / project.goal) * 100)}}%</div>
                 </div>
                 <button type="button" class="btn btn-outline-primary custom-button" (click)="editProject(project)" *ngIf="isOwner(project)">Edit</button>
+                <button type="button" class="btn btn-outline-primary custom-button" (click)="deleteProject(project)" *ngIf="isOwner(project)">Delete</button>
                 <div class="form-group">
                     <input class="input" id="inputInvest" type="number" class="form-field" placeholder=" " (focusout)="focusoutHandler($event)">
                     <label for="inputInvest" class="form-label">Invest</label>
@@ -67,6 +68,11 @@
         </div>
         <div class="col-md-4">
             <h3>Comments</h3>
+            <div class="form-group">
+                <textarea id="inputComment" class="form-field" placeholder=" " rows="3" (focusout)="focusoutHandler($event)"></textarea>
+                <label for="inputComment" class="form-label">Comment</label>
+            </div>
+            <button type="button" class="btn btn-outline-primary custom-button" (click)="commentProject(project)">Comment</button>
             <div class="comment" *ngFor="let comment of comments; index as i">
                 <img class="rounded-circle" src="http://via.placeholder.com/35x35">
                 <span class="comment-creator margin-text-left">{{(commentEmployees$[i] | async)?.firstname}} {{(commentEmployees$[i] | async)?.lastname}}</span>

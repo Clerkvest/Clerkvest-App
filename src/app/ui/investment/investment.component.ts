@@ -89,6 +89,11 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public invest: IInvestIn;
 
   /**
+   * Project comment
+   */
+  public comment: IProjectComment;
+
+  /**
    * Current url id param
    */
   public idParam: string;
@@ -106,6 +111,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   // Bools
   public isInvestThere: boolean;
   public hasInvested: boolean;
+  public isCommentThere: boolean;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -172,6 +178,15 @@ export class InvestmentComponent implements OnInit, OnDestroy {
       employeeId?: number;
       investment?: number;
     }
+
+    this.comment = new class implements IProjectComment {
+      id?: number;
+      employeeId?: number;
+      projectId?: number;
+      title?: string;
+      text?: string;
+      date?: Date;
+    }
   }
 
   /**
@@ -213,6 +228,23 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Navigates to the edit page of the project
+   * @param project Project to update
+   */
+  deleteProject(project: IProject) {
+    this.projectService.deleteProject(project.id).subscribe(
+      ret => {
+        console.log(ret);
+        this.router.navigate(['dashboard']);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  /**
    * Checks if the current user is the creator of the project
    */
   isOwner(project: IProject){
@@ -240,7 +272,26 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     );
   }
 
-    /**
+  commentProject(project: IProject) {
+
+    this.comment.title = "";
+    this.comment.projectId = this.project.id;
+    this.comment.employeeId = this.localService.getAsInteger(Cookie.ID);
+
+    let sub: Subscription = this.commentService.addComment(this.comment).subscribe(
+      ret => {
+        console.log(ret);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    )
+  }
+
+  /**
    * Sets the inputs values into the buffer object
    * @param event The event
    */
@@ -252,6 +303,14 @@ export class InvestmentComponent implements OnInit, OnDestroy {
           this.isInvestThere = false;
         } else {
           this.isInvestThere = true;
+        }
+        break;
+      case 'inputComment': 
+        this.comment.text = event.target.value;
+        if (this.comment.text.length == 0) {
+          this.isCommentThere = false;
+        } else {
+          this.isCommentThere = true;
         }
         break;
     }
