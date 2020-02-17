@@ -58,6 +58,7 @@
                 <button type="button" class="btn btn-outline-primary custom-button" (click)="investInto(project)">Invest</button>
                 <p class="margin-text-top success" *ngIf="hasInvested != undefined && hasInvested">Successfully invested</p>
                 <p class="margin-text-top failure" *ngIf="hasInvested != undefined && !hasInvested">Failed to invest. {{errorString}}</p>
+                <button type="button" class="btn btn-outline-primary custom-button" (click)="removeInvestment(project)" *ngIf="(invested$ | async) > 0">Remove {{invested$ | async}}€</button>
             </div>
         </div>
     </div>

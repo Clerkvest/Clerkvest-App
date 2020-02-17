@@ -89,6 +89,11 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public invest: IInvestIn;
 
   /**
+   * Currentlly invested
+   */
+  public invested$: Observable<number>;
+
+  /**
    * Project comment
    */
   public comment: IProjectComment;
@@ -154,6 +159,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
 
       this.creator$ = this.employeeService.getEmployeeById(this.project.employeeId);
       this.comments$ = this.commentService.getComments(this.project.id);
+      this.invested$ = this.investService.getInvestmentAmountByProjectForEmployee(this.localService.getAsInteger(Cookie.ID), this.project.id);
 
       if(project.image !== null) {
         this.imageSub = this.imageService.getImageUsingGET(project.image).subscribe(image => {
@@ -232,17 +238,37 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    * @param project Project to update
    */
   deleteProject(project: IProject) {
-    this.projectService.deleteProject(project.id).subscribe(
+    let sub = this.projectService.deleteProject(project.id).subscribe(
       ret => {
         console.log(ret);
         this.router.navigate(['dashboard']);
       },
       error => {
         console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
       }
     );
   }
 
+  /**
+   * Removes all investmentrs of a project from the current user logged in
+   * @param project Project to delete from
+   */
+  removeInvestment(project: IProject) {
+    let sub = this.investService.deleteInvestmentsByEmployeeAndProject(this.localService.getAsInteger(Cookie.ID), project.id).subscribe(
+      ret => {
+        console.log(ret);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
+  }
 
   /**
    * Checks if the current user is the creator of the project

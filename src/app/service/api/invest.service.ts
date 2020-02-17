@@ -230,7 +230,7 @@ export class InvestService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<string>(`${this.basePath}/invest/delete/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.delete<string>(`${this.basePath}/invest/delete/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId2))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -408,7 +408,7 @@ export class InvestService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<number>(`${this.basePath}/invest/get/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId))}`,
+        return this.httpClient.get<number>(`${this.basePath}/invest/get/project/${encodeURIComponent(String(id))}/employee/${encodeURIComponent(String(employeeId2))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
