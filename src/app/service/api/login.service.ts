@@ -1,3 +1,4 @@
+import { IResponse } from './../../model/IResponse';
 /**
  * Team Investment Tool
  * Team Investment Tool
@@ -61,9 +62,9 @@ export class LoginService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getApiKey(token: string, observe?: 'body', reportProgress?: boolean): Observable<IEmployee>;
-    public getApiKey(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<IEmployee>>;
-    public getApiKey(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<IEmployee>>;
+    public getApiKey(token: string, observe?: 'body', reportProgress?: boolean): Observable<IResponse>;
+    public getApiKey(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<IResponse>>;
+    public getApiKey(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<IResponse>>;
     public getApiKey(token: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (token === null || token === undefined) {
@@ -85,7 +86,7 @@ export class LoginService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<IEmployee>(`${this.basePath}/login/${encodeURIComponent(String(token))}`,
+        return this.httpClient.get<IEmployee>(`${this.basePath}/token/${encodeURIComponent(String(token))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

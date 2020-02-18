@@ -5,10 +5,10 @@ export enum Cookie {
   /**
    * Id cookie
    */
-  ID = 'id',
+  ID = 'myself',
 
   /**
    * Token cookie
    */
-  TOKEN = 'token'
+  TOKEN = 'api'
 }

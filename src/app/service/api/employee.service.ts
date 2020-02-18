@@ -179,9 +179,7 @@ export class EmployeeService {
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected !== undefined) {
-            headers = 
-                headers.set('Accept', httpHeaderAcceptSelected)
-                .set('Access-Control-Allow-Origin', '*');
+            headers = headers.set('Accept', httpHeaderAcceptSelected)
         }
 
         // to determine the Content-Type header
@@ -189,6 +187,46 @@ export class EmployeeService {
         ];
 
         return this.httpClient.get<IEmployee>(`${this.basePath}/employee/get/${encodeURIComponent(String(employeeId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+        /**
+     * Find Employee by ID
+     * Returns a single Employee
+     * @param employeeId ID of Employee to return
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getEmployee(token: string, observe?: 'body', reportProgress?: boolean): Observable<IEmployee>;
+    public getEmployee(token: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<IEmployee>>;
+    public getEmployee(token: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<IEmployee>>;
+    public getEmployee(token: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (APIKeyHeader) required
+        headers = headers.set('Authorization', 'Bearer '  + token);
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected)
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.get<IEmployee>(`${this.basePath}/employee/get`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -51,7 +51,7 @@ export class LocalService {
    * Reads a cookie out of the local storage
    * @param name Name of the cookie
    * @return value of the cookie as a boolean
-   */
+   */y
   getAsBoolean(name): boolean {
     const cookie = this.cookie.get(name);
     return cookie === 'true' || cookie === 'True' || cookie === '1';
@@ -63,7 +63,7 @@ export class LocalService {
    * @param value Value to set
    */
   set(name: string, value: string): void {
-    this.cookie.set(name, value);
+    this.cookie.set(name, value, 7, '/', undefined);
   }
 
   /**
