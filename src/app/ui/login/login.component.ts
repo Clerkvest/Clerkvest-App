@@ -1,6 +1,5 @@
 import { LocalService } from 'src/app/service/cookie/local.service';
 import { CookieService } from 'ngx-cookie-service';
-import { LocalService } from './../../service/cookie/local.service';
 import { EmployeeService } from 'src/app/service/api/employee.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from './../../service/api/login.service';
