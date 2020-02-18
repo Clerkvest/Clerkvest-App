@@ -25,7 +25,7 @@ import { LocalService } from '../cookie/local.service';
 @Injectable()
 export class CommentService {
 
-    protected basePath = 'http://clerkvest.com:8080/api';
+    protected basePath = 'https://clerkvest.com/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

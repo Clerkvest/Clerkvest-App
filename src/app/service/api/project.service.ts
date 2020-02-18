@@ -27,7 +27,7 @@ import { IProjectImage } from 'src/app/model/IProjectImage';
 @Injectable()
 export class ProjectService {
 
-    protected basePath = 'http://clerkvest.com:8080/api';
+    protected basePath = 'https://clerkvest.com/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

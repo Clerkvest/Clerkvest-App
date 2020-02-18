@@ -26,7 +26,7 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 @Injectable()
 export class InvestService {
 
-    protected basePath = 'http://clerkvest.com:8080/api';
+    protected basePath = 'https://clerkvest.com/api';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
