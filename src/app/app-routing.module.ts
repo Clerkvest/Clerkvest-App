@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'create', component: CreateComponent},
   {path: 'myself', component: ProfileComponent},
   {path: 'company', component: CompanyComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'login/:token', component: LoginComponent},
   {path: 'app', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '**', component: Error404Component}

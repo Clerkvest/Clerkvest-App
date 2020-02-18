@@ -14,7 +14,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 
-import { BASE_PATH } from '../variables';
+import { BASE_PATH }  from '../variables';
 import { Configuration } from '../configuration';
 import { Observable } from 'rxjs';
 
