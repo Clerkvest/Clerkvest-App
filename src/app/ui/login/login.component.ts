@@ -32,12 +32,17 @@ export class LoginComponent implements OnInit, OnDestroy {
           employee => {
             this.localService.set(Cookie.TOKEN, response.response);
             this.localService.set(Cookie.ID, String(employee.id));
+
+            setTimeout(() => 
+            {
+              this.router.navigate(['dashboard']);
+            },
+            2000);
           },
           error => {
             console.log(error);
           },
           () => {
-            this.router.navigate(['dashboard']);
             employeeSub.unsubscribe();
           }
         );
