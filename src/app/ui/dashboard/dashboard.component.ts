@@ -1,11 +1,12 @@
 import { ImageService } from './../../service/api/image.service';
 import { ProjectService } from './../../service/api/project.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { IProject } from 'src/app/model/models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IProjectImage } from 'src/app/model/IProjectImage';
+import { APP_BASE_HREF } from '@angular/common';
 
 /**
  * @author Danny B.
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param project ProjectService to get all project the employee got access to.
    */
   constructor(
+    @Inject(APP_BASE_HREF) href:string,
     private router: Router,
     private projectService: ProjectService,
     private sanitizer: DomSanitizer
