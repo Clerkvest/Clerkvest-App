@@ -73,6 +73,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param image Image to convert
    */
   convertToBase64(image: string) {
-    return this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64," + image);
+    if(image !== null) {
+      return this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + image);
+    }
   }
 }

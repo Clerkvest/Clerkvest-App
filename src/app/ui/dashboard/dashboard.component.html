@@ -1,35 +1,40 @@
 <app-navigator></app-navigator>
 
 <div class="container">
-  <div class="row">
-    <h2 class="component-title">Dashboard</h2>
-  </div>
-  <div class="row">
-     <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
-         <div class="card-block shadow-sm">
-             <div class="card-img">
-                 <img [src]="convertToBase64(project.image)">
-             </div>
-             <div class="card-content">
-              <h5 class="card-title">{{project.title}}</h5>
-              <p class="card-desc">{{project.description}}</p>
-                <div class="raised-goal-container">
-                  <span>
+    <div class="row">
+        <h2 class="component-title">Dashboard</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
+            <div class="card-block shadow-sm">
+                <div class="card-img">
+                    <img *ngIf="project.image == null" src="./assets/image.png">
+                    <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
+                </div>
+                <div class="card-content">
+                    <h5 class="card-title">{{project.title}}</h5>
+                    <p class="card-desc">{{project.description}}</p>
+                    <div class="raised-goal-container">
+                        <span>
                     <span class="raised-text">Raised: </span>
-                    <span class="raised-value">{{project.investedIn}}€</span>
-                  </span>
-                  <span>
+                        <span class="raised-value">{{project.investedIn}}€</span>
+                        </span>
+                        <span>
                     <span class="goal-text">Goal: </span>
-                    <span class="goal-value">{{project.goal}}€</span>
-                  </span>
+                        <span class="goal-value">{{project.goal}}€</span>
+                        </span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100)}}%
+                        </div>
+                    </div>
+                    <a>
+                        <button type="button" class="btn btn-primary card-btn-custom" (click)="openProject(project)">
+                            View details
+                        </button>
+                    </a>
                 </div>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100)}}%
-                  </div>
-                </div>
-                <button type="button" class="btn btn-outline-primary card-button" (click)="openProject(project)">View details</button>
-             </div>
-         </div>
-     </div>
-  </div>
+            </div>
+        </div>
+    </div>
 </div>

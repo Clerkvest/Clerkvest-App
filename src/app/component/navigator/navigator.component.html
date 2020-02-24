@@ -57,7 +57,7 @@
 							<p class="no-space">Name: {{(company$ | async)?.name}}</p>
 							<p class="no-space">Domain: {{(company$ | async)?.domain}}</p>
 							<p class="no-space">Invite only: {{(company$ | async)?.inviteOnly}}</p>
-							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount}}</p>
+							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount}}€</p>
 							<p>Payout day: {{(company$ | async)?.payInterval}}</p>
 							<a routerLink="/company" *ngIf="(employee$ | async)?.admin">
 								<button type="button" class="btn btn-primary dropdown-btn-custom">

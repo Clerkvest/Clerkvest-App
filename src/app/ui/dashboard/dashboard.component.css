@@ -2,6 +2,8 @@
     background-color: #ffffff; 
     padding: 30px;
     margin-bottom: 30px;
+
+    overflow: hidden;
 }
 
 .card-content { 
@@ -10,6 +12,10 @@
 
 .card-title { 
     margin-bottom: 5px; 
+
+    color: var(--default-blue);
+    font-size: 18px;
+    font-weight: bold;
     text-transform: uppercase; 
 }
 
@@ -17,7 +23,7 @@
     display: block; 
     letter-spacing: 1px; 
     margin-bottom: 15px; 
-    font-size: 12px; 
+    font-size: 14px; 
 }
 
 .card-img > img { 
@@ -31,14 +37,14 @@
 }
 
 .raised-text {
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase; 
 }
 
 .goal-text {
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase; 
@@ -49,28 +55,28 @@
 }
 
 .progress-bar {
-    background-color: rgb(7, 71, 166);
+    background-color: var(--default-blue);
 }
 
-.card-button {
-    margin-top: 1rem;
+.card-btn-custom {
+    color: var(--white);
+    background-color: var(--default-blue);
+    font-size: 15px;
+    font-weight: bold;
     text-transform: uppercase; 
+    border: var(--default-blue);
 
-    border-color: rgb(7, 71, 166);
-    color: rgb(7, 71, 166);
+    margin-top: 15px;
 }
 
-.card-button:active{
-    background-color: rgb(7, 71, 166);
-    color: white;
+.card-btn-custom:active {
+    background-color: var(--hover-blue);
 }
-    
-.card-button:hover{
-    background-color: rgb(7, 71, 166);
-    color: white;
+
+.card-btn-custom:hover {
+    background-color: var(--hover-blue);
 }
-.card-button:focus{
-    background-color: rgb(7, 71, 166);
-    color: white;
-    outline: none;
+
+.card-btn-custom:focus {
+    background-color: var(--hover-blue);
 }
