@@ -8,7 +8,7 @@
         <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
             <div class="card-block shadow-sm">
                 <div class="card-img">
-                    <img *ngIf="project.image == null" src="./app/assets/image.png">
+                    <img *ngIf="project.image == null" src="../assets/image.png">
                     <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
                 </div>
                 <div class="card-content">
