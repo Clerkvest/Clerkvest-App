@@ -1,47 +1,111 @@
-<nav class="navbar navbar-dark navbar-expand-xl navbar-blue shadow-sm">
-	<div class="navbar-header d-flex">
-    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler collapsed ml-auto">
-		<span class="line line-top"></span> 
-        <span class="line line-middle"></span> 
-        <span class="line line-bottom"></span>
-	</button>
-    <a class="navbar-brand text-color-white margin-text-left" href="/">
-      Clerkvest
-    </a>  		
-	</div>
-	<div id="navbarCollapse" class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="nav-item"><a (click)="openDashboard()" class="nav-link">Dashboard</a></li>
-			<li class="nav-item"><a href="#" class="nav-link">Investment</a></li>
-			<li class="nav-item dropdown">
-				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
-				<ul class="dropdown-menu">					
-					<li><a class="dropdown-item">Profile</a></li>
-					<li><a href="#" class="dropdown-item">Drop 2</a></li>
-					<li><a href="#" class="dropdown-item">Drop 3</a></li>
-					<li><a href="#" class="dropdown-item">Drop 4</a></li>
-				</ul>
+<!-- Nav Start -->
+<!-- Nav Start -->
+<!-- Nav Start -->
+<nav class="navbar navbar-white bg-white navbar-expand-xl shadow-sm fixed-top">
+    <div class="navbar-header d-flex">
+        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler collapsed ml-auto">
+            <span class="line line-top"></span>
+            <span class="line line-middle"></span>
+            <span class="line line-bottom"></span>
+        </button>
+        <a class="navbar-brand margin-left-lg" routerLink="/dashboard">Clerkvest</a>
+    </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="nav-item"><a class="nav-link nav-link-custom" routerLink="/dashboard">Dashboard</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" data-toggle="dropdown" class="nav-link nav-link-custom dropdown-toggle dropdown-toggle-hide user-action">
+                    Investment
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left dropdown-menu-custom">
+                    <div class="row">
+                        <div class="dropdown-tab-icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="dropdown-tab-text">
+                            <div class="dropdown-underlined-text">Investment</div>
+                            <div class="dropdown-underline"></div>
+                        </div>
+                        <div class="dropdown-content">
+							<p class="no-space dropdown-question">What are investments?</p>
+							<p class="dropdown-answer">Investments are project every other employee can invest into.</p>
+							<a class="dropdown-btn-custom" routerLink="/create">
+								<button type="button" class="btn btn-primary dropdown-btn-custom">
+									Create investment
+								</button>
+							</a>
+                        </div>
+                    </div>
+                </ul>
 			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right ml-auto">
-			<li class="nav-item">
-				<a class="nav-link">
-					<img src="../../../assets/doodle/icon/balance.png" class="balance-img margin-px-right-sm">
-					{{(employee$ | async)?.balance}}€
+        </ul>
+        <ul class="nav navbar-nav navbar-right ml-auto">
+			<li class="nav-item dropdown margin-right-lg">
+				<a href="#" data-toggle="dropdown" class="nav-link nav-link-custom dropdown-toggle dropdown-toggle-hide user-action dropdown-right">
+					company
 				</a>
-			</li>
-			<li class="nav-item dropdown margin-text-right">
-				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
-					<img src="../../../assets/doodle/icon/account.png" class="avatar-img rounded-circle margin-px-right-sm">
-					{{(employee$ | async)?.email}}
-        		</a>
-				<ul class="dropdown-menu">
-					<li><a (click)="openProfile()" class="dropdown-item"><i class="fa fa-user"></i> Your Profile</a></li>
-					<li><a (click)="openCompany()" class="dropdown-item"><i class="fa fa-building"></i> Your Company</a></li>
-					<li class="divider dropdown-divider"></li>
-					<li><a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a></li>
+				<ul class="dropdown-menu dropdown-menu-right dropdown-menu-custom">
+					<div class="row">
+						<div class="dropdown-tab-icon">
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="dropdown-tab-text">
+							<div class="dropdown-underlined-text">{{(company$ | async)?.name}}</div>
+							<div class="dropdown-underline"></div>
+						</div>
+						<div class="dropdown-content">
+							<p class="no-space">Name: {{(company$ | async)?.name}}</p>
+							<p class="no-space">Domain: {{(company$ | async)?.domain}}</p>
+							<p class="no-space">Invite only: {{(company$ | async)?.inviteOnly}}</p>
+							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount}}</p>
+							<p>Payout day: {{(company$ | async)?.payInterval}}</p>
+							<a routerLink="/company" *ngIf="(employee$ | async)?.admin">
+								<button type="button" class="btn btn-primary dropdown-btn-custom">
+									Edit company
+								</button>
+							</a>
+						</div>
+					</div>
 				</ul>
 			</li>
-		</ul>
-	</div>
+            <li class="nav-item dropdown margin-right-lg">
+                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle dropdown-toggle-hide user-action">
+					<button type="button" class="btn btn-primary nav-btn-custom">
+                        Profile
+                    </button>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right dropdown-menu-custom">
+                    <div class="row">
+                        <div class="dropdown-tab-icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="dropdown-tab-text">
+                            <div class="dropdown-underlined-text">{{(employee$ | async)?.firstname}} {{(employee$ | async)?.lastname}}</div>
+                            <div class="dropdown-underline"></div>
+                        </div>
+                        <div class="dropdown-content">
+							<p class="no-space">Firstname: {{(employee$ | async)?.firstname}}</p>
+							<p class="no-space">Lastname: {{(employee$ | async)?.lastname}}</p>
+							<p class="no-space">Nickname: {{(employee$ | async)?.nickname}}</p>
+							<p class="no-space">E-Mail: {{(employee$ | async)?.email}}</p>
+							<p>Balance: {{(employee$ | async)?.balance}}€</p>
+							<a class="dropdown-btn-custom" routerLink="/myself">
+								<button type="button" class="btn btn-primary dropdown-btn-custom">
+									Edit profile
+								</button>
+							</a>
+							<a class="dropdown-btn-logout">
+								<button type="button" class="btn btn-primary dropdown-btn-custom" onclick="logout()">
+									Logout <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+								</button>
+							</a>
+                        </div>
+                    </div>
+                </ul>
+			</li>
+        </ul>
+    </div>
 </nav>
+<!-- Nav End -->
+<!-- Nav End -->
+<!-- Nav End -->

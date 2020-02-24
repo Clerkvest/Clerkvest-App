@@ -1,7 +1,34 @@
+/* Imports -- START */
+/* Imports -- START */
+/* Imports -- START */
+
+@import url('https://fonts.googleapis.com/css?family=Kulim+Park&display=swap');
+
+/* Imports -- END */
+/* Imports -- END */
+/* Imports -- END */
+
+/* Vars -- START */
+/* Vars -- START */
+/* Vars -- START */
+
 :root {
-    --white: rgb(255, 255, 255);
-    --black: rgb(0, 0, 0);
+    --white: rgb(244,244,244);
+    --hover-white: rgb(220, 220, 220);
+    --gray: rgb(51, 51, 51);
+    --font-black: rgb(0, 0, 0);
+    --font-black-sub: rgba(0, 0, 0, 0.75);
+    --default-blue: rgb(51, 104, 240);
+    --hover-blue: rgb(7, 71, 166);
 }
+
+/* Vars -- END */
+/* Vars -- END */
+/* Vars -- END */
+
+/* Body -- Start */
+/* Body -- Start */
+/* Body -- Start */
 
 html, body {
     height: 100%;
@@ -14,7 +41,14 @@ body {
     font-family: 'Kulim Park', Roboto, 'Helvetica Neue', sans-serif !important;
 }
 
-/* Generic classes */
+/* Body -- End */
+/* Body -- End */
+/* Body -- End */
+
+/* Generic -- Start */
+/* Generic -- Start */
+/* Generic -- Start */
+
 .margin-text-left {
     margin-left: 1rem;
 }
@@ -39,12 +73,114 @@ body {
     margin-bottom: 15px;
 }
 
-.text-color-white {
-    color: var(--white);
+.margin-left-sm {
+    margin-left: 5px;
 }
 
-.text-color-black {
-    color: var(--black);
+.margin-top-sm {
+    margin-top: 5px;
+}
+
+.margin-right-sm {
+    margin-right: 5px;
+}
+
+.margin-bottom-sm {
+    margin-bottom: 5px;
+}
+
+.margin-left-mdl {
+    margin-left: 10px;
+}
+
+.margin-top-mdl {
+    margin-top: 10px;
+}
+
+.margin-right-mdl {
+    margin-right: 10px;
+}
+
+.margin-bottom-mdl {
+    margin-bottom: 10px;
+}
+
+.margin-left-lg {
+    margin-left: 25px;
+}
+
+.margin-top-lg {
+    margin-top: 25px;
+}
+
+.margin-right-lg {
+    margin-right: 25px;
+}
+
+.margin-bottom-lg {
+    margin-bottom: 25px;
+}
+
+.margin-top {
+    margin-top: 88px;
+}
+
+/* Padding */
+
+.padding-left-sm {
+    padding-left: 5px;
+}
+
+.padding-top-sm {
+    padding-top: 5px;
+}
+
+.padding-right-sm {
+    padding-right: 5px;
+}
+
+.padding-bottom-sm {
+    padding-bottom: 5px;
+}
+
+.padding-left-mdl {
+    padding-left: 10px;
+}
+
+.padding-top-mdl {
+    padding-top: 10px;
+}
+
+.padding-right-mdl {
+    padding-right: 10px;
+}
+
+.padding-bottom-mdl {
+    padding-bottom: 10px;
+}
+
+.padding-left-lg {
+    padding-left: 15px;
+}
+
+.padding-top-lg {
+    padding-top: 15px;
+}
+
+.padding-right-lg {
+    padding-right: 15px;
+}
+
+.padding-bottom-lg {
+    padding-bottom: 15px;
+}
+
+.padding-top {
+    margin-top: 88px;
+}
+
+.padding-bottom {
+    margin-top: 88px;
 }
 
 .component-title{
@@ -57,6 +193,25 @@ body {
     font-weight: bold;
     text-transform: uppercase; 
 }
+
+.no-space {
+    margin-bottom: -5px;
+}
+
+.hr {
+    width: 100%;
+    height: 0.5px;
+
+    background-color: rgba(155, 155, 155, 0.75);
+}
+
+/* Generic -- End */
+/* Generic -- End */
+/* Generic -- End */
+
+/* Response -- Start */
+/* Response -- Start */
+/* Response -- Start */
 
 .required {
     color: red;
@@ -73,7 +228,14 @@ body {
     font-size: 12px;
 }
 
-/* Loading anim */
+/* Response -- End */
+/* Response -- End */
+/* Response -- End */
+
+/* Loading -- Start */
+/* Loading -- Start */
+/* Loading -- Start */
+
 .app-loading {
     position: relative;
     display: flex;
@@ -125,7 +287,14 @@ body {
     }
 }
 
-/* Form style */
+/* Loading -- End */
+/* Loading -- End */
+/* Loading -- End */
+
+/* Form -- Start */
+/* Form -- Start */
+/* Form -- Start */
+
 .form-group {
     position: relative;
     padding: 15px 0 0;
@@ -173,3 +342,7 @@ label,
     padding-bottom: 6px;
     border-bottom: 2px solid rgb(7, 71, 166);
 }
+
+/* Form -- End */
+/* Form -- End */
+/* Form -- End */
