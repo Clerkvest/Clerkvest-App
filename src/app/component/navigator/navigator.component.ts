@@ -48,6 +48,15 @@ export class NavigatorComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.employee$ = this.EmployeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID));
+
+    this.employeeSub = this.employee$.subscribe(
+      employee => {
+
+      },
+      error => {
+        
+      }
+    );
   }
 
   /**
