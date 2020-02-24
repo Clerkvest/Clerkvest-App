@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param project ProjectService to get all project the employee got access to.
    */
   constructor(
-    @Inject(APP_BASE_HREF) href:string,
     private router: Router,
     private projectService: ProjectService,
     private sanitizer: DomSanitizer
