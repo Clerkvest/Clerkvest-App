@@ -53,6 +53,7 @@
 
 .uploaded-file-container {
     width: 100%;
+    height: 50px;
 
     font-size: 18px;
 
@@ -60,8 +61,14 @@
     border-radius: 10px;
 
     margin-top: 15px;
-    padding-top: 15px;
-    padding-left: 5px;
+    padding-top: 8.5px;
+    padding-left: 15px;
+}
+
+.delete-btn-custom {
+
+    margin-left: calc(100% - 55px);
+    margin-top: -55px;
 }
 
 .upload-btn-custom {

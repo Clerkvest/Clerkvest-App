@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <h2 class="component-title">Create investment</h2>
+        <h2 class="component-title">Create project</h2>
     </div>
     <div class="row">
         <div class="col">
@@ -37,9 +37,9 @@
                             <p class="upload-file-text">Drop files here or click to upload.</p>
                         </div>
                         <div class="uploaded-file-container" *ngIf="fileToUpload != null">
-                            <h3>{{fileToUpload.name}}</h3>
+                            <span>{{fileToUpload.name}}</span>
 							<a (click)="deleteFile()">
-								<button type="button" class="btn btn-primary upload-btn-custom">
+								<button type="button" class="btn btn-primary delete-btn-custom">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
 							</a>
