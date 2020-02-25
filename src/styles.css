@@ -335,12 +335,33 @@ label,
 }
   
 .form-field:focus ~ .form-label {
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
 }
   
 .form-field:focus {
     padding-bottom: 6px;
-    border-bottom: 2px solid rgb(7, 71, 166);
+    border-bottom: 2px solid var(--default-blue);
+}
+
+.btn-custom {
+    color: var(--white);
+    background-color: var(--default-blue);
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-color: var(--default-blue);
+}
+  
+.btn-custom:active {
+    background-color: var(--hover-blue);
+}
+  
+.btn-custom:hover {
+    background-color: var(--hover-blue);
+}
+  
+.btn-custom:focus {
+    background-color: var(--hover-blue);
 }
 
 /* Form -- End */

@@ -57,26 +57,3 @@
 .progress-bar {
     background-color: var(--default-blue);
 }
-
-.card-btn-custom {
-    color: var(--white);
-    background-color: var(--default-blue);
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase; 
-    border: var(--default-blue);
-
-    margin-top: 15px;
-}
-
-.card-btn-custom:active {
-    background-color: var(--hover-blue);
-}
-
-.card-btn-custom:hover {
-    background-color: var(--hover-blue);
-}
-
-.card-btn-custom:focus {
-    background-color: var(--hover-blue);
-}

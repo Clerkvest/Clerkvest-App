@@ -111,12 +111,14 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   /**
    * Error string
    */
-  public errorString: string;
+  public errorStringInvest: string;
+  public errorStringComment: string;
 
   // Bools
   public isInvestThere: boolean;
   public hasInvested: boolean;
   public isCommentThere: boolean;
+  public hasCreated: boolean;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -290,7 +292,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
       },
       error => {
         this.hasInvested = false;
-        this.errorString = error.status + " " + error.error.error;
+        this.errorStringInvest = error.status + " " + error.error.error;
       },
       () => {
         investSub.unsubscribe();
@@ -300,16 +302,23 @@ export class InvestmentComponent implements OnInit, OnDestroy {
 
   commentProject(project: IProject) {
 
+    if(!this.isCommentThere) {
+      this.hasCreated = false;
+      this.errorStringComment = 'Comment is empty.'
+      return;
+    }
+
     this.comment.title = "";
     this.comment.projectId = this.project.id;
     this.comment.employeeId = this.localService.getAsInteger(Cookie.ID);
 
     let sub: Subscription = this.commentService.addComment(this.comment).subscribe(
       ret => {
-        console.log(ret);
+        this.hasCreated = true;
       },
       error => {
-        console.log(error);
+        this.hasCreated = false;
+        this.errorStringComment = error.status + " " + error.error.error;
       },
       () => {
         sub.unsubscribe();

@@ -27,67 +27,44 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <img class="rounded mx-auto d-block img-preview" [src]="safeUrl">
-        </div>
-        <div class="col-md-4">
-            <div class="creator">
-                <img class="rounded-circle" src="http://via.placeholder.com/65x65">
-                <span class="creator-text margin-text-left">{{(creator$ | async)?.firstname}} {{(creator$ | async)?.lastname}}</span>
-            </div>
-            <div class="funding">
-                <div class="raised-goal-container">
-                    <span>
-                      <span class="raised-text">Raised: </span>
-                      <span class="raised-value">{{project.investedIn}}€</span>
-                    </span>
-                    <span>
-                      <span class="goal-text">Goal: </span>
-                      <span class="goal-value">{{project.goal}}€</span>
-                    </span>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)">{{((project.investedIn / project.goal) * 100)}}%</div>
-                </div>
-                <button type="button" class="btn btn-outline-primary custom-button" (click)="editProject(project)" *ngIf="isOwner(project)">Edit</button>
-                <button type="button" class="btn btn-outline-primary custom-button" (click)="deleteProject(project)" *ngIf="isOwner(project)">Delete</button>
-                <div class="form-group">
-                    <input class="input" id="inputInvest" type="number" class="form-field" placeholder=" " (focusout)="focusoutHandler($event)">
-                    <label for="inputInvest" class="form-label">Invest</label>
-                    <span class="required" *ngIf="isInvestThere != null && !isInvestThere"> This field is required/unvalid</span>
-                </div>
-                <button type="button" class="btn btn-outline-primary custom-button" (click)="investInto(project)">Invest</button>
-                <p class="margin-text-top success" *ngIf="hasInvested != undefined && hasInvested">Successfully invested</p>
-                <p class="margin-text-top failure" *ngIf="hasInvested != undefined && !hasInvested">Failed to invest. {{errorString}}</p>
-                <button type="button" class="btn btn-outline-primary custom-button" (click)="removeInvestment(project)" *ngIf="(invested$ | async) > 0">Remove {{invested$ | async}}€</button>
-            </div>
-        </div>
-    </div>
-    <div class="row margin-text-top">
-        <div class="col-md-8">
-            <h1 class="title">{{project.title}}</h1>
-            <p class="desc">{{project.description}}</p>
-        </div>
-        <div class="col-md-4">
-            <h3>Comments</h3>
-            <div class="form-group">
-                <textarea id="inputComment" class="form-field" placeholder=" " rows="3" (focusout)="focusoutHandler($event)"></textarea>
-                <label for="inputComment" class="form-label">Comment</label>
-            </div>
-            <button type="button" class="btn btn-outline-primary custom-button" (click)="commentProject(project)">Comment</button>
-            <div class="comment" *ngFor="let comment of comments; index as i">
-                <img class="rounded-circle" src="http://via.placeholder.com/35x35">
-                <span class="comment-creator margin-text-left">{{(commentEmployees$[i] | async)?.firstname}} {{(commentEmployees$[i] | async)?.lastname}}</span>
-                <p class="comment-text">{{comment.text}}</p>
-            </div>
-            <hr>
-        </div>
-    </div>
 </div>
 
-<div class="container text-center align-middle margin-text-top" *ngIf="!doesExist">
+<div class="container project-content" *ngIf="project != null">
     <div class="row">
-        <h1>Investment does not exist or you are not permitted to view.</h1>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-project-tab" data-toggle="pill" href="#pills-project" role="tab" aria-controls="pills-project" aria-selected="true">Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab">
+                
+            </div>
+            
+            <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-comments-tab">
+                <div class="comment" *ngFor="let comment of comments; index as i">
+                    <img class="rounded-circle" src="http://via.placeholder.com/35x35">
+                    <span class="comment-creator margin-text-left">{{(commentEmployees$[i] | async)?.firstname}} {{(commentEmployees$[i] | async)?.lastname}}</span>
+                    <p class="comment-text">{{comment.text}}</p>
+                    <hr>
+                </div>
+                <div class="form-group">
+                    <textarea id="inputComment" class="form-field" placeholder=" " rows="3" (focusout)="focusoutHandler($event)"></textarea>
+                    <label for="inputComment" class="form-label">What are your thoughts on that?</label>
+                </div>
+                <a (click)="commentProject(project)">
+                    <button type="button" class="btn btn-primary btn-custom">
+                        Write comment
+                    </button>
+                </a>
+                <p class="margin-text-top success" *ngIf="hasCreated != undefined && hasCreated">Comment successfully created.</p>
+                <p class="margin-text-top failure" *ngIf="hasCreated != undefined && !hasCreated">Comment failed to create. {{errorStringComment}}</p>
+            </div>
+        </div>
     </div>
 </div>
