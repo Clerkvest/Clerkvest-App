@@ -1,3 +1,4 @@
+import { isNullOrUndefined } from 'util';
 import { Cookie } from './../../enumeration/cookie.enum';
 import { LocalService } from './../../service/cookie/local.service';
 import { Subscription, Observable } from 'rxjs';
@@ -45,7 +46,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   /**
    * Buff file
    */
-  fileToUpload: File = null;
+  fileToUpload: any = null;
 
   /**
    * File upload sub
@@ -114,7 +115,10 @@ export class CreateComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.projectSub.unsubscribe();
     this.creatorSub.unsubscribe();
-    this.fileSub.unsubscribe();
+
+    if(!isNullOrUndefined(this.fileSub)) {
+      this.fileSub.unsubscribe();
+    }
   }
 
   /**
@@ -170,7 +174,7 @@ export class CreateComponent implements OnInit, OnDestroy {
    * File change event
    * @param files Files to update. Takes the first only
    */
-  handleFileInput(files: FileList) {
+  onDrop(files: FileList) {
     this.fileToUpload = files.item(0);
   }
 

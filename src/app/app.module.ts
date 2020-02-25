@@ -17,6 +17,7 @@ import { CreateComponent } from './ui/create/create.component';
 import { UpdateComponent } from './ui/update/update.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { CompanyComponent } from './ui/company/company.component';
+import { DragDropDirective } from './directive/drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CompanyComponent } from './ui/company/company.component';
     UpdateComponent,
     ProfileComponent,
     CompanyComponent,
+    DragDropDirective,
   ],
   imports: [
     BrowserModule,
