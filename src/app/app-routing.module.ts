@@ -7,11 +7,9 @@ import { InvestmentComponent } from './ui/investment/investment.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './ui/dashboard/dashboard.component';
-import { UpdateComponent } from './ui/update/update.component';
 
 
 const routes: Routes = [
-  {path: 'update/:id', component: UpdateComponent},
   {path: 'project/:id', component: InvestmentComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create', component: CreateComponent},

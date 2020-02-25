@@ -14,7 +14,6 @@ import { LoginComponent } from './ui/login/login.component';
 import { Error404Component } from './ui/error/error404/error404.component';
 import { ApiModule } from './service/api.module';
 import { CreateComponent } from './ui/create/create.component';
-import { UpdateComponent } from './ui/update/update.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { CompanyComponent } from './ui/company/company.component';
 import { DragDropDirective } from './directive/drag-drop.directive';
@@ -28,7 +27,6 @@ import { DragDropDirective } from './directive/drag-drop.directive';
     LoginComponent,
     Error404Component,
     CreateComponent,
-    UpdateComponent,
     ProfileComponent,
     CompanyComponent,
     DragDropDirective,
