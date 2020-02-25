@@ -184,6 +184,13 @@ export class CreateComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Delete the file
+   */
+  deleteFile() {
+    this.fileToUpload = null;
+  }
+
+  /**
    * Sends the API calls to create a project
    */
   public fire() {

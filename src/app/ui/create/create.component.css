@@ -17,61 +17,18 @@
     background-color: rgb(7, 71, 166);
 }
 
-.fire-button {
-    margin-top: 1rem;
-    text-transform: uppercase; 
-
-    border-color: rgb(7, 71, 166);
-    color: rgb(7, 71, 166);
-}
-
-.fire-button:active{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-    
-.fire-button:hover{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-.fire-button:focus{
-    background-color: rgb(7, 71, 166);
-    color: white;
-    outline: none;
-}
-
-.required {
-    color: red;
-    font-size: 12px;
-}
-
-.success {
-    color: green;
-    font-size: 12px;
-}
-
-.failure {
-    color: red;
-    font-size: 12px;
-}
-
-
 /* Drag and drop */
 
 .upload-file-container {
-    background-repeat: no-repeat;
-    background-size: 100px;
-    background-position: center;
     height: 200px;
     width: 100%;
-    border: 2px dashed #1C8ADB;
+    border: 2px dashed var(--default-blue);
     border-radius: 10px;
 }
 
 .upload-file-container:hover {
     cursor: pointer;
     background-color: #9ecbec !important;
-    opacity: 0.8;
 }
 
 .upload-file-container .upload-none {
@@ -88,7 +45,42 @@
 
 .upload-file-text {
     width: 100%;
+    color: gray;
     font-size: 1.3rem;
     text-align: center;
     margin-top: -125px
+}
+
+.uploaded-file-container {
+    width: 100%;
+
+    font-size: 18px;
+
+    border: 2px dashed var(--default-blue);
+    border-radius: 10px;
+
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+.upload-btn-custom {
+    color: var(--white);
+    background-color: var(--default-blue);
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-color: var(--default-blue);
+}
+  
+.upload-btn-custom:active {
+    background-color: var(--hover-blue);
+}
+  
+.upload-btn-custom:hover {
+    background-color: var(--hover-blue);
+}
+  
+.upload-btn-custom:focus {
+    background-color: var(--hover-blue);
 }

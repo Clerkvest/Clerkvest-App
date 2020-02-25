@@ -36,8 +36,20 @@
                             <input class="upload-full-size-btn" type="button" onclick="document.getElementById('file').click();"/>
                             <p class="upload-file-text">Drop files here or click to upload.</p>
                         </div>
+                        <div class="uploaded-file-container" *ngIf="fileToUpload != null">
+                            <h3>{{fileToUpload.name}}</h3>
+							<a (click)="deleteFile()">
+								<button type="button" class="btn btn-primary upload-btn-custom">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</button>
+							</a>
+                        </div>
                         <br>
-                        <button type="button" class="btn btn-outline-primary fire-button" (click)="fire()">Create now</button>
+                        <a (click)="fire()">
+                            <button type="button" class="btn btn-primary upload-btn-custom">
+                                Create project
+                            </button>
+                        </a>
                         <p class="margin-text-top success" *ngIf="hasCreated != undefined && hasCreated">Project successfully created.</p>
                         <p class="margin-text-top failure" *ngIf="hasCreated != undefined && !hasCreated">Project failed to create. {{errorString}}</p>
                     </form>
