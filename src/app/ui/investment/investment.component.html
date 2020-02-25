@@ -3,27 +3,27 @@
 <div class="container" *ngIf="project != null">
     <div class="row">
         <h2 class="component-title">
-            Investment
+            Project
         </h2>
     </div>
     <div class="row" *ngIf="project.reached">
         <div class="col">
             <div class="alert alert-success w-100" role="alert">
-                Investment has been successfully funded.
+                Project has been successfully funded.
             </div>
         </div>
     </div>
     <div class="row" *ngIf="!project.reached && projectState">
         <div class="col">
             <div class="alert alert-warning w-100" role="alert">
-                Investment is close to completion.
+                Project is close to completion.
             </div>
         </div>
     </div>
     <div class="row" *ngIf="!project.reached && !projectState">
         <div class="col">
             <div class="alert alert-info w-100" role="alert">
-                Investment is still in progress.
+                Project is still in progress.
             </div>
         </div>
     </div>

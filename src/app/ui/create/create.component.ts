@@ -113,8 +113,13 @@ export class CreateComponent implements OnInit, OnDestroy {
    * Unsubscribes all subscriptions
    */
   ngOnDestroy(): void {
-    this.projectSub.unsubscribe();
-    this.creatorSub.unsubscribe();
+    if(!isNullOrUndefined(this.projectSub)) {
+      this.projectSub.unsubscribe();
+    }
+
+    if(!isNullOrUndefined(this.creatorSub)) {
+      this.creatorSub.unsubscribe();
+    }
 
     if(!isNullOrUndefined(this.fileSub)) {
       this.fileSub.unsubscribe();
@@ -190,14 +195,20 @@ export class CreateComponent implements OnInit, OnDestroy {
           .subscribe(
             project => { 
               this.hasCreated = true;
-              this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
-                ret => {
-                  this.hasCreated = true;
-                },
-                error => {
-                  this.hasCreated = false;
-                  this.errorString = "Upload error: " + error.status + " " + error.error.error;
-                });
+
+              if(!isNullOrUndefined(this.fileToUpload)) {
+                this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
+                  ret => {
+                    this.hasCreated = true;
+                    this.router.navigate(['project', project.id]);
+                  },
+                  error => {
+                    this.hasCreated = false;
+                    this.errorString = "Upload error: " + error.status + " " + error.error.error;
+                  });
+              } else {
+                this.router.navigate(['project', project.id]);
+              }
             },
             error => {
               this.hasCreated = false;

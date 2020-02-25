@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
    * @param project Project to route to
    */
   openProject(project: IProject): void {
-    this.router.navigate(['investment', project.id]);
+    this.router.navigate(['project', project.id]);
   }
 
   /**

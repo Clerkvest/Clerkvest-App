@@ -12,7 +12,7 @@ import { UpdateComponent } from './ui/update/update.component';
 
 const routes: Routes = [
   {path: 'update/:id', component: UpdateComponent},
-  {path: 'investment/:id', component: InvestmentComponent},
+  {path: 'project/:id', component: InvestmentComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'create', component: CreateComponent},
   {path: 'myself', component: ProfileComponent},
