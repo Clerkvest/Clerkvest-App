@@ -58,7 +58,10 @@
 							<p class="no-space">Domain: {{(company$ | async)?.domain}}</p>
 							<p class="no-space">Invite only: {{(company$ | async)?.inviteOnly}}</p>
 							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount}}€</p>
-							<p>Payout day: {{(company$ | async)?.payInterval}}</p>
+							<p *ngIf="(company$ | async)?.payInterval == 1">Payout day: {{(company$ | async)?.payInterval}}st of every month</p>
+							<p *ngIf="(company$ | async)?.payInterval == 2">Payout day: {{(company$ | async)?.payInterval}}nd of every month</p>
+							<p *ngIf="(company$ | async)?.payInterval == 3">Payout day: {{(company$ | async)?.payInterval}}rd of every month</p>
+							<p *ngIf="(company$ | async)?.payInterval > 3">Payout day: {{(company$ | async)?.payInterval}}th of every month</p>
 							<a routerLink="/company" *ngIf="(employee$ | async)?.admin">
 								<button type="button" class="btn btn-primary dropdown-btn-custom">
 									Edit company
