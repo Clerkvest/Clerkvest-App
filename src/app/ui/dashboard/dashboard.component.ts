@@ -69,6 +69,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['project', project.id]);
   }
 
+  sliceDesc(desc: string) {
+    return desc.slice(0, 100) + ' ...';
+  }
+
   /**
    * Converts a string to a valid base64 string html can handle
    * @param image Image to convert
