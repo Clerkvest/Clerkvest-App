@@ -67,6 +67,10 @@
     margin-right: 15px;
 }
 
+.progress-bar {
+    background-color: var(--default-blue);
+}
+
 /* Comments */
 
 .pills-comments {
