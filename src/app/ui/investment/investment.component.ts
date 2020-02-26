@@ -113,12 +113,16 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    */
   public errorStringInvest: string;
   public errorStringComment: string;
+  public errorStringDelete: string;
+  public errorStringRemoved: string;
 
   // Bools
   public isInvestThere: boolean;
   public hasInvested: boolean;
   public isCommentThere: boolean;
+  public hasDeleted: boolean;
   public hasCreated: boolean;
+  public hasRemoved: boolean;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -231,22 +235,15 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    * Navigates to the edit page of the project
    * @param project Project to update
    */
-  editProject(project: IProject) {
-    this.router.navigate(['update', project.id]);
-  }
-
-  /**
-   * Navigates to the edit page of the project
-   * @param project Project to update
-   */
   deleteProject(project: IProject) {
     let sub = this.projectService.deleteProject(project.id).subscribe(
       ret => {
-        console.log(ret);
+        this.hasDeleted = true;
         this.router.navigate(['dashboard']);
       },
       error => {
-        console.log(error);
+        this.hasDeleted = false;
+        this.errorStringDelete = error.status + " " + error.error.error;
       },
       () => {
         sub.unsubscribe();
@@ -261,10 +258,12 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   removeInvestment(project: IProject) {
     let sub = this.investService.deleteInvestmentsByEmployeeAndProject(this.localService.getAsInteger(Cookie.ID), project.id).subscribe(
       ret => {
-        console.log(ret);
+        this.hasRemoved = true;
+        window.location.reload();
       },
       error => {
-        console.log(error);
+        this.hasRemoved = false;
+        this.errorStringRemoved = error.status + " " + error.error.error;
       },
       () => {
         sub.unsubscribe();
@@ -284,6 +283,13 @@ export class InvestmentComponent implements OnInit, OnDestroy {
    * @param project Project to invest into
    */
   investInto(project: IProject) {
+
+    if(this.invest.investment == null) {
+      this.hasInvested = false;
+      this.errorStringInvest = "Investment cannot be empty";
+      return;
+    }
+
     this.invest.projectId = this.project.id;
     this.invest.employeeId = this.localService.getAsInteger(Cookie.ID);
 
@@ -293,6 +299,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
           let investSub = this.investService.addInvestment(this.invest).subscribe(
             ret => {
               this.hasInvested = true;
+              window.location.reload();
             },
             error => {
               this.hasInvested = false;
@@ -331,6 +338,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
     let sub: Subscription = this.commentService.addComment(this.comment).subscribe(
       ret => {
         this.hasCreated = true;
+        window.location.reload();
       },
       error => {
         this.hasCreated = false;
