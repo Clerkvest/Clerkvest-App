@@ -286,16 +286,32 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   investInto(project: IProject) {
     this.invest.projectId = this.project.id;
     this.invest.employeeId = this.localService.getAsInteger(Cookie.ID);
-    let investSub = this.investService.addInvestment(this.invest).subscribe(
-      ret => {
-        this.hasInvested = true;
+
+    var employeeSub = this.employeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID)).subscribe(
+      employee => {
+        if(employee.balance > this.invest.investment) {
+          let investSub = this.investService.addInvestment(this.invest).subscribe(
+            ret => {
+              this.hasInvested = true;
+            },
+            error => {
+              this.hasInvested = false;
+              this.errorStringInvest = error.status + " " + error.error.error;
+            },
+            () => {
+              investSub.unsubscribe();
+            }
+          );
+        } else {
+          this.hasInvested = false;
+          this.errorStringInvest = "Your balance is not high enough.";
+        }
       },
       error => {
-        this.hasInvested = false;
-        this.errorStringInvest = error.status + " " + error.error.error;
+        console.log(error);
       },
       () => {
-        investSub.unsubscribe();
+        employeeSub.unsubscribe();
       }
     );
   }
