@@ -43,6 +43,10 @@
     height: auto;
 }
 
+.tab-content {
+    margin-bottom: 15px;
+}
+
 .project-main {
     color: var(--default-blue);
     font-size: 32px;
