@@ -108,7 +108,11 @@ export class CompanyComponent implements OnInit, OnDestroy {
       this.myself = myself;
       this.companySub = this.companyService.getCompanyById(myself.companyId).subscribe(company => {
         this.company = company;
-        this.image$ = this.imageService.getImageUsingGET(this.company.image);
+
+        if(!isNullOrUndefined(this.company.image)) {
+          this.image$ = this.imageService.getImageUsingGET(this.company.image);
+        }
+
         this.hasLoaded = true;
       });
     });

@@ -1,59 +1,45 @@
+/* Nav */
+
 .nav-link{
-    color: rgb(7, 71, 166);
-    font-size: 14px;
+    color: var(--default-blue);
+    font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
 
     background-color: transparent;
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
 }
 
 .nav-link:focus, .nav-link:active {
-    background-color: rgb(7, 71, 166);
+    background-color: var(--default-blue);
     color: white; 
 }
 
-.company-img {
-    max-width: 100%;
+.nav .active {
+    background-color: var(--default-blue);
 }
 
-.company-name {
-    color: rgb(7, 71, 166);
-    font-size: 22px;
-    font-weight: bold;
-    text-transform: uppercase; 
-
-    margin-bottom: -5px;
+.tab-content {
+    margin-left: 15px;
+    width: calc(100% - 30px);
 }
 
-.company-domain {
-    color: rgb(7, 71, 166);
-    font-size: 14px;
+/* Company */
+
+.company-container {
+    background-color: white;
 }
 
-.fire-button {
-    margin-top: 1rem;
-    text-transform: uppercase; 
-
-    border-color: rgb(7, 71, 166);
-    color: rgb(7, 71, 166);
+.company-container img {
+    max-width: 100px;
+    height: auto;
 }
 
-.fire-button:active{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-    
-.fire-button:hover{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-.fire-button:focus{
-    background-color: rgb(7, 71, 166);
-    color: white;
-    outline: none;
+.company-container h3 {
+    color: var(--default-blue);
+    padding-top: 15px;
 }
 
-.nav > .active {
-    background-color: rgb(7, 71, 166);
+.company-container p {
+    margin-top: -15px;
 }
