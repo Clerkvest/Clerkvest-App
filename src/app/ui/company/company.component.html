@@ -7,7 +7,7 @@
 </div>
 
 <div class="container company-container" *ngIf="hasLoaded">
-    <img [src]="convertToBase64(image$ | async)" *ngIf="image$ != null">
+    <img [src]="convertToBase64(image$ | async)" *ngIf="image$ != null" class="margin-top-lg">
     <h3>{{company.name}}</h3>
     <p>{{company.domain}}</p>
 
@@ -29,9 +29,52 @@
         </div>
             
         <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
+            <div class="form-group">
+                <input class="input" id="inputName" type="text" class="form-field" [value]="company.name" placeholder=" " (focusout)="focusoutHandler($event)">
+                <label for="inputName" class="form-label">Name</label>
+            </div>
+            <div class="form-group">
+                <input class="input" id="inputDomain" type="text" class="form-field" [value]="company.domain" placeholder=" " (focusout)="focusoutHandler($event)">
+                <label for="inputDomain" class="form-label">Domain</label>
+            </div>
+            <div class="form-group">
+                <input class="input" id="inputAmount" type="number" min="0" class="form-field" [value]="company.payAmount" placeholder=" " (focusout)="focusoutHandler($event)">
+                <label for="inputAmount" class="form-label">Payout amount</label>
+            </div>
+            <div class="form-group">
+                <input class="input" id="inputPayoutDay" type="number" min="1" step="1" max="30" class="form-field" [value]="company.payInterval" placeholder=" " (focusout)="focusoutHandler($event)">
+                <label for="inputPayoutDay" class="form-label">Payout day</label>
+            </div>
+            <label class="checkbox">Invite only
+                <input type="checkbox" [checked]="company.inviteOnly" (change)="company.inviteOnly= !company.inviteOnly">
+                <span class="checkmark"></span>
+            </label>
+            <div class="upload-file-container"
+                appDragDrop
+                (dropped)="onDrop($event)">
+                <input class="upload-none" type="file" id="file" (change)="onDrop($event.target.files)">
+                <input class="upload-full-size-btn" type="button" onclick="document.getElementById('file').click();"/>
+                <p class="upload-file-text">Drop files here or click to upload.</p>
+            </div>
+            <div class="uploaded-file-container" *ngIf="fileToUpload != null">
+                <span>{{fileToUpload.name}}</span>
+                <a (click)="deleteFile()">
+                    <button type="button" class="btn btn-primary btn-custom">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+            <a (click)="saveSettings()">
+                <button type="button" class="btn btn-primary btn-custom margin-top-sm margin-bottom-lg">
+                    Update company
+                </button>
+            </a>
+            <p class="success margin-top-sm padding-bottom-lg" *ngIf="hasUpdated != undefined && hasUpdated">Profile successfully updated.</p>
+            <p class="failure margin-top-sm padding-bottom-lg" *ngIf="hasUpdated != undefined && !hasUpdated">Profile failed to updated. {{errorString}}</p>
         </div>
 
-        <div class="tab-pane fade" id="pills-delinviteete" role="tabpanel" aria-labelledby="pills-delete-tab">
+        <div class="tab-pane fade" id="pills-invite" role="tabpanel" aria-labelledby="pills-invite-tab">
+
         </div>
     </div>
 </div>

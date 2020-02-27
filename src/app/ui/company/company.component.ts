@@ -171,8 +171,15 @@ export class CompanyComponent implements OnInit, OnDestroy {
    * File change event
    * @param files Files to update. Takes the first only
    */
-  handleFileInput(files: FileList) {
+  onDrop(files: FileList) {
     this.fileToUpload = files.item(0);
+  }
+
+  /**
+   * Delete the file
+   */
+  deleteFile() {
+    this.fileToUpload = null;
   }
 
   /**
@@ -186,7 +193,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   /**
    * Sends the API calls to update a company
    */
-  public fire() {
+  public saveSettings() {
     let sub: Subscription = this.companyService.updateCompany(this.company).subscribe(
       ret => {
         this.hasUpdated = true;
@@ -196,7 +203,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
           let imageSub: Subscription = this.imageService.createCompanyImageUsingPOST(this.fileToUpload, this.company.id)
             .subscribe(
               imgRet => {
-
+                window.location.reload();
               },
               error => {
                 this.hasUpdated = false;
