@@ -17,9 +17,3 @@ jobs:
       run: npm install
     - name: Build
       run: npm run build -- --prod
-    - name: Unit tests
-      run: npm test -- --watch false --browsers ChromeHeadless
-    - name: End2End tests
-      run: | 
-        ./node_modules/.bin/webdriver-manager update
-        npm run e2e
