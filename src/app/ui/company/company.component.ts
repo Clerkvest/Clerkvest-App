@@ -83,9 +83,15 @@ export class CompanyComponent implements OnInit, OnDestroy {
   image$: Observable<string>;
 
   /**
+   * Email to invite
+   */
+  inviteEmail: string;
+
+  /**
    * Error string
    */
   errorString: string;
+  errorStringInvite: string;
 
   /**
    * Has loaded state. True if page has loaded everything
@@ -96,6 +102,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
    * Has updated state. True if company got updated successfully
    */
   hasUpdated: boolean;
+  hasInvited: boolean;
 
   //bools
   isNameThere: boolean;
@@ -193,6 +200,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
     }
   }
 
+    /**
+   * Sets the inputs values into the buffer object
+   * @param event The event
+   */
+  public focusoutHandlerInvite(event) {
+    this.inviteEmail = event.target.value;
+  }
+
   /**
    * File change event
    * @param files Files to update. Takes the first only
@@ -249,5 +264,15 @@ export class CompanyComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     );
+  }
+
+  public invite() {
+    if(this.inviteEmail.length == 0) {
+      this.hasInvited = false;
+      this.errorStringInvite = "Email cannot be empty";
+      return;
+    }
+
+    // TODO: API Call if there
   }
 }
