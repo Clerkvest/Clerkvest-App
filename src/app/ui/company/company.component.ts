@@ -53,6 +53,21 @@ export class CompanyComponent implements OnInit, OnDestroy {
   myselfSub: Subscription;
 
   /**
+   * Employee array
+   */
+  employees$: Observable<Array<IEmployee>>;
+
+  /**
+   * Sub
+   */
+  employeesSub: Subscription;
+
+  /**
+   * Sum of balance
+   */
+  sumOfBalance: number = 0;
+
+  /**
    * Image url
    */
   safeUrl: SafeUrl;
@@ -113,7 +128,17 @@ export class CompanyComponent implements OnInit, OnDestroy {
           this.image$ = this.imageService.getImageUsingGET(this.company.image);
         }
 
-        this.hasLoaded = true;
+        this.employees$ = this.employeeService.getAllEmployeesUsingGET();
+        this.employeesSub = this.employees$.subscribe(
+          employees => {
+            employees.forEach(employee => {
+              console.log(employee)
+              this.sumOfBalance += employee.balance;
+            });
+
+            this.hasLoaded = true;
+          }
+        );
       });
     });
   }
@@ -124,6 +149,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.companySub.unsubscribe();
     this.myselfSub.unsubscribe();
+    this.employeesSub.unsubscribe();
   }
 
   /**
