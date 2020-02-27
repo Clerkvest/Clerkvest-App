@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { CompanyService } from './../../service/api/company.service';
 import { Subscription, Observable } from 'rxjs';
 import { Cookie } from './../../enumeration/cookie.enum';
@@ -50,7 +51,8 @@ export class NavigatorComponent implements OnInit, OnDestroy {
    */
   constructor(
     private router: Router, 
-    private localService: LocalService, 
+    private localService: LocalService,
+    private cookieService: CookieService,
     private employeeService: EmployeeService,
     private companyService: CompanyService
   ) { }
