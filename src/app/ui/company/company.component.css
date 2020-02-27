@@ -29,6 +29,8 @@
 .company-container {
     background-color: white;
     margin-bottom: 75px;
+
+    min-height: 70%;
 }
 
 .company-container img {
