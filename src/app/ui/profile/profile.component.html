@@ -5,21 +5,18 @@
         <h2 class="component-title">Profile</h2>
     </div>
     <div class="row">
-        <div class="col-3">
+        <div class="col-sm-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <img class="profile-img margin-px-bottom-lg" src="http://via.placeholder.com/150x150">
+                <!--<img class="profile-img margin-px-bottom-lg" src="http://via.placeholder.com/150x150">-->
                 <p class="profile-name">{{myself.firstname}} {{myself.lastname}}</p>
                 <p class="profile-email">{{myself.email}}</p>
-                <a class="nav-link active" id="v-pills-investments-tab" data-toggle="pill" href="#v-pills-investments" role="tab" aria-controls="v-pills-investments" aria-selected="false">Profile</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                <!--<a class="nav-link active" id="v-pills-investments-tab" data-toggle="pill" href="#v-pills-investments" role="tab" aria-controls="v-pills-investments" aria-selected="false">Profile</a>-->
+                <a class="nav-link active" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="true">Settings</a>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9">
             <div class="tab-content" id="v-pills-tab-content">
-                <div class="tab-pane fade show active" id="v-pills-investments" role="tabpanel" aria-labelledby="v-pills-investments-tab">
-                    Coming soon.
-                </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                <div class="tab-pane fade show active" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <form>
                         <div class="form-group">
                             <input class="input" id="inputFirstname" type="text" class="form-field" [value]="myself.firstname" placeholder=" " (focusout)="focusoutHandler($event)">
@@ -33,7 +30,11 @@
                             <input class="input" id="inputNickname" type="text" class="form-field" [value]="myself.nickname" placeholder=" " (focusout)="focusoutHandler($event)">
                             <label for="inputTitle" class="form-label">Nickname</label>
                         </div>
-                        <button type="button" class="btn btn-outline-primary fire-button" (click)="fire()">Update now</button>
+                        <a (click)="fire()">
+                            <button type="button" class="btn btn-primary btn-custom margin-top-sm margin-bottom-lg">
+                                Update profile
+                            </button>
+                        </a>
                         <p class="margin-text-top success" *ngIf="hasUpdated != undefined && hasUpdated">Profile successfully updated.</p>
                         <p class="margin-text-top failure" *ngIf="hasUpdated != undefined && !hasUpdated">Profile failed to updated. {{errorString}}</p>
                     </form>

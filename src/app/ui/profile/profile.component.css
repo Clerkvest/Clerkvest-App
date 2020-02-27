@@ -1,27 +1,24 @@
 .nav-link{
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 
     background-color: transparent;
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
 }
 
 .nav-link:focus, .nav-link:active {
-    background-color: rgb(7, 71, 166);
+    background-color: var(--default-blue);
     color: white; 
 }
 
-.profile-img {
-    max-width: 90px;
-    max-height: 90px;
-
-    border-radius: 100%;
+.nav .active {
+    background-color: var(--default-blue);
 }
 
 .profile-name {
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase; 
@@ -30,33 +27,6 @@
 }
 
 .profile-email {
-    color: rgb(7, 71, 166);
+    color: var(--default-blue);
     font-size: 14px;
-}
-
-.fire-button {
-    margin-top: 1rem;
-    text-transform: uppercase; 
-
-    border-color: rgb(7, 71, 166);
-    color: rgb(7, 71, 166);
-}
-
-.fire-button:active{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-    
-.fire-button:hover{
-    background-color: rgb(7, 71, 166);
-    color: white;
-}
-.fire-button:focus{
-    background-color: rgb(7, 71, 166);
-    color: white;
-    outline: none;
-}
-
-.nav > .active {
-    background-color: rgb(7, 71, 166);
 }
