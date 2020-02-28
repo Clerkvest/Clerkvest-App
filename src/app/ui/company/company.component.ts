@@ -232,13 +232,50 @@ export class CompanyComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Promotes an employee to an admin
+   */
+  public promote(employee: IEmployee) {
+    employee.admin = true;
+
+    let sub: Subscription = this.employeeService.updateEmployee(employee).subscribe(
+      ret => {
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
+  }
+
+  /**
+   * Adds balance to the employee
+   */
+  public addBalance(employee: IEmployee, amount: number) {
+    employee.balance = employee.balance + amount;
+
+    let sub: Subscription = this.employeeService.updateEmployee(employee).subscribe(
+      ret => {
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
+  }
+
+  /**
    * Sends the API calls to update a company
    */
   public saveSettings() {
     let sub: Subscription = this.companyService.updateCompany(this.company).subscribe(
       ret => {
         this.hasUpdated = true;
-        console.log(ret);
         
         if(!isNullOrUndefined(this.fileToUpload)) {
           let imageSub: Subscription = this.imageService.createCompanyImageUsingPOST(this.fileToUpload, this.company.id)

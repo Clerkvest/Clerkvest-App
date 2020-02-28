@@ -26,9 +26,27 @@
         <div class="tab-pane fade show active" id="pills-employees" role="tabpanel" aria-labelledby="pills-employees-tab">
             <p>Your employees got a balance of {{sumOfBalance}}€ together.</p>
 
-            <div *ngFor="let employee of employees$ | async" class="employee-container bg-light">
-                <h5>{{employee.firstname}} {{employee.lastname}}</h5>
-                <p>Balance: {{employee.balance}}€</p>
+            <div *ngFor="let employee of employees$ | async" class="employee-container">
+                <p class="no-space margin-left-sm">{{employee.firstname}} {{employee.lastname}}</p>
+                <p class="no-space margin-left-sm">{{employee.email}}</p>
+                <p class="no-space margin-left-sm" *ngIf="employee.admin">Role: Admin</p>
+                <p class="no-space margin-left-sm" *ngIf="!employee.admin">Role: Employee</p>
+                <p class="no-space margin-left-sm">Balance: {{employee.balance}}€</p>
+                <a (click)="addBalance(employee, 1)">
+                    <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
+                        Add 1€
+                    </button>
+                </a>
+                <a (click)="addBalance(employee, 5)">
+                    <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
+                        Add 5€
+                    </button>
+                </a>
+                <a (click)="promote(employee)">
+                    <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
+                        promote
+                    </button>
+                </a>
             </div>
         </div>
             
