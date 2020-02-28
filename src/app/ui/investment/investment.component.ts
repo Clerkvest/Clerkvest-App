@@ -295,7 +295,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
 
     var employeeSub = this.employeeService.getEmployeeById(this.localService.getAsInteger(Cookie.ID)).subscribe(
       employee => {
-        if(employee.balance > this.invest.investment) {
+        if(employee.balance >= this.invest.investment) {
           let investSub = this.investService.addInvestment(this.invest).subscribe(
             ret => {
               this.hasInvested = true;
