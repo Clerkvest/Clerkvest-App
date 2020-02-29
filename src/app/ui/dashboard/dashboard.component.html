@@ -25,7 +25,7 @@
                         </span>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100)}}%
+                        <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
                         </div>
                     </div>
                     <a (click)="openProject(project)">

@@ -88,7 +88,7 @@
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)"></div>
                         </div>
-                        <p class="project-percent">{{((project.investedIn / project.goal) * 100)}}%</p>
+                        <p class="project-percent">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%</p>
 
                         <div class="form-group">
                             <input id="inputInvest" class="form-field" placeholder=" " type="number" (focusout)="focusoutHandler($event)">

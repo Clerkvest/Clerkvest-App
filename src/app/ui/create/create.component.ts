@@ -212,7 +212,7 @@ export class CreateComponent implements OnInit, OnDestroy {
 
                 if(this.fileToUpload.size > 2e+6) {
                   this.hasCreated = false;
-                  this.errorString = "File size greater than 2mb.";
+                  this.errorString = "File size can not be greater than 2mb.";
                 } else {
                   this.isUploading = true;
                   this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
