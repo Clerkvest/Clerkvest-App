@@ -1,3 +1,4 @@
+import { LoginService } from './../../service/api/login.service';
 import { ImageService } from './../../service/api/image.service';
 import { LocalService } from 'src/app/service/cookie/local.service';
 import { EmployeeService } from './../../service/api/employee.service';
@@ -119,6 +120,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
     private employeeService: EmployeeService,
     private companyService: CompanyService,
     private imageService: ImageService,
+    private loginService: LoginService,
     private sanitizer: DomSanitizer
   ) { }
 
@@ -303,6 +305,9 @@ export class CompanyComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Sends the API calls to invite an employee
+   */
   public invite() {
     if(this.inviteEmail.length == 0) {
       this.hasInvited = false;
@@ -310,6 +315,17 @@ export class CompanyComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // TODO: API Call if there
+    var sub: Subscription = this.loginService.invite(this.inviteEmail).subscribe(
+      response => {
+        window.location.reload();
+      }, 
+      error => {
+        this.hasInvited = false;
+        this.errorStringInvite = error.status + " " + error.error.error;
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
   }
 }
