@@ -36,20 +36,22 @@
                             <input class="upload-full-size-btn" type="button" onclick="document.getElementById('file').click();"/>
                             <p class="upload-file-text">Drop files here or click to upload.</p>
                         </div>
+                        <p class="margin-text-top" *ngIf="isFileToBig">File size is greater than 2mb.</p>
                         <div class="uploaded-file-container" *ngIf="fileToUpload != null">
-                            <span>{{fileToUpload.name}}</span>
+                            <p>{{fileToUpload.name}}</p>
 							<a (click)="deleteFile()">
 								<button type="button" class="btn btn-primary btn-custom">
-									<i class="fa fa-trash-o" aria-hidden="true"></i>
+									Remove file
 								</button>
 							</a>
                         </div>
                         <br>
                         <a (click)="fire()">
-                            <button type="button" class="btn btn-primary upload-btn-custom">
+                            <button type="button" class="btn btn-primary btn-custom margin-bottom-lg">
                                 Create project
                             </button>
                         </a>
+                        <p class="margin-text-top" *ngIf="isUploading">File uploading please wait.</p>
                         <p class="margin-text-top success" *ngIf="hasCreated != undefined && hasCreated">Project successfully created.</p>
                         <p class="margin-text-top failure" *ngIf="hasCreated != undefined && !hasCreated">Project failed to create. {{errorString}}</p>
                     </form>

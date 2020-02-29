@@ -69,6 +69,8 @@ export class CreateComponent implements OnInit, OnDestroy {
   isDescriptionThere: boolean = true;
   isGoalThere: boolean = true;
   isImageThere: boolean = true;
+  isUploading: boolean = false;
+  isFileToBig: boolean = false;
 
   /**
    * Creates an object of CreateComponent.
@@ -180,7 +182,12 @@ export class CreateComponent implements OnInit, OnDestroy {
    * @param files Files to update. Takes the first only
    */
   onDrop(files: FileList) {
-    this.fileToUpload = files.item(0);
+    if(files.item(0).size > 2e+6) {
+      this.isFileToBig = true;
+    } else {
+      this.isFileToBig = false;
+      this.fileToUpload = files.item(0);
+    }
   }
 
   /**
@@ -201,18 +208,24 @@ export class CreateComponent implements OnInit, OnDestroy {
         this.projectSub = this.projectService.addProject(this.buffObject)
           .subscribe(
             project => { 
-              this.hasCreated = true;
-
               if(!isNullOrUndefined(this.fileToUpload)) {
-                this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
-                  ret => {
-                    this.hasCreated = true;
-                    this.router.navigate(['project', project.id]);
-                  },
-                  error => {
-                    this.hasCreated = false;
-                    this.errorString = "Upload error: " + error.status + " " + error.error.error;
-                  });
+
+                if(this.fileToUpload.size > 2e+6) {
+                  this.hasCreated = false;
+                  this.errorString = "File size greater than 2mb.";
+                } else {
+                  this.isUploading = true;
+                  this.fileSub = this.imageService.createProjectImageUsingPOST(this.fileToUpload, project.id).subscribe(
+                    ret => {
+                      this.hasCreated = true;
+                      this.isUploading = false;
+                      this.router.navigate(['project', project.id]);
+                    },
+                    error => {
+                      this.hasCreated = false;
+                      this.errorString = "Upload error: " + error.status + " " + error.error.error;
+                    });
+                }
               } else {
                 this.router.navigate(['project', project.id]);
               }
