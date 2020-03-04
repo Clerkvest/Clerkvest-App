@@ -6,6 +6,10 @@
     overflow: hidden;
 }
 
+.card-a {
+    cursor: pointer;
+}
+
 .card-content { 
     text-align: left; 
 }

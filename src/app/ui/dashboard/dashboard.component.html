@@ -6,35 +6,32 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
-            <div class="card-block shadow-sm" *ngIf="!project.reached">
-                <div class="card-img">
-                    <img *ngIf="project.image == null" src="./app/assets/image.png">
-                    <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">{{project.title}}</h5>
-                    <p class="card-desc">{{sliceDesc(project.description)}}</p>
-                    <div class="raised-goal-container">
-                        <span>
-                    <span class="raised-text">Raised: </span>
-                        <span class="raised-value">{{project.investedIn}}€</span>
-                        </span>
-                        <span>
-                    <span class="goal-text">Goal: </span>
-                        <span class="goal-value">{{project.goal}}€</span>
-                        </span>
+            <a class="card-a" (click)="openProject(project)">
+                <div class="card-block shadow-sm" *ngIf="!project.reached">
+                    <div class="card-img">
+                        <img *ngIf="project.image == null" src="./app/assets/image.png">
+                        <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                    <div class="card-content">
+                        <h5 class="card-title">{{project.title}}</h5>
+                        <p class="card-desc">{{sliceDesc(project.description)}}</p>
+                        <div class="raised-goal-container">
+                            <span>
+                        <span class="raised-text">Raised: </span>
+                            <span class="raised-value">{{project.investedIn}}€</span>
+                            </span>
+                            <span>
+                    <span class="goal-text">Goal: </span>
+                            <span class="goal-value">{{project.goal}}€</span>
+                            </span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                            </div>
                         </div>
                     </div>
-                    <a (click)="openProject(project)">
-                        <button type="button" class="btn btn-primary btn-custom margin-top-sm">
-                            View details
-                        </button>
-                    </a>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="row">
@@ -42,35 +39,32 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
-            <div class="card-block shadow-sm" *ngIf="project.reached">
-                <div class="card-img">
-                    <img *ngIf="project.image == null" src="./app/assets/image.png">
-                    <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
-                </div>
-                <div class="card-content">
-                    <h5 class="card-title">{{project.title}}</h5>
-                    <p class="card-desc">{{sliceDesc(project.description)}}</p>
-                    <div class="raised-goal-container">
-                        <span>
-                    <span class="raised-text">Raised: </span>
-                        <span class="raised-value">{{project.investedIn}}€</span>
-                        </span>
-                        <span>
-                    <span class="goal-text">Goal: </span>
-                        <span class="goal-value">{{project.goal}}€</span>
-                        </span>
+            <a class="card-a" (click)="openProject(project)">
+                <div class="card-block shadow-sm" *ngIf="project.reached">
+                    <div class="card-img">
+                        <img *ngIf="project.image == null" src="./app/assets/image.png">
+                        <img *ngIf="project.image != null" [src]="convertToBase64(project.image)">
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                    <div class="card-content">
+                        <h5 class="card-title">{{project.title}}</h5>
+                        <p class="card-desc">{{sliceDesc(project.description)}}</p>
+                        <div class="raised-goal-container">
+                            <span>
+                    <span class="raised-text">Raised: </span>
+                            <span class="raised-value">{{project.investedIn}}€</span>
+                            </span>
+                            <span>
+                    <span class="goal-text">Goal: </span>
+                            <span class="goal-value">{{project.goal}}€</span>
+                            </span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                            </div>
                         </div>
                     </div>
-                    <a (click)="openProject(project)">
-                        <button type="button" class="btn btn-primary btn-custom margin-top-sm">
-                            View details
-                        </button>
-                    </a>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
