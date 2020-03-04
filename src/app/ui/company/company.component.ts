@@ -64,6 +64,11 @@ export class CompanyComponent implements OnInit, OnDestroy {
   employeesSub: Subscription;
 
   /**
+   * List of employees to update
+   */
+  employees: IEmployee[] = [];
+
+  /**
    * Sum of balance
    */
   sumOfBalance: number = 0;
@@ -141,7 +146,6 @@ export class CompanyComponent implements OnInit, OnDestroy {
         this.employeesSub = this.employees$.subscribe(
           employees => {
             employees.forEach(employee => {
-              console.log(employee)
               this.sumOfBalance += employee.balance;
             });
 
@@ -272,6 +276,14 @@ export class CompanyComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Adds balance to the employee
+   */
+  public addToUpdateList(employee: IEmployee, event) {
+    employee.balance = event.target.value;
+    this.employees.push(employee);
+  }
+
+  /**
    * Sends the API calls to update a company
    */
   public saveSettings() {
@@ -327,5 +339,24 @@ export class CompanyComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     );
+  }
+
+  /**
+   * Updates all employees that got a change
+   */
+  public updateEmployees() {
+    this.employees.forEach(employee => {
+      let sub: Subscription = this.employeeService.updateEmployee(employee).subscribe(
+        ret => {
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          sub.unsubscribe();
+        }
+      );
+    });
   }
 }

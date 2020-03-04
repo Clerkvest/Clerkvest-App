@@ -31,6 +31,10 @@
     margin-bottom: 15px;
 }
 
+.custom-width {
+    width: 250px
+}
+
 /* Company */
 
 .company-container {

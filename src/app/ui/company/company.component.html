@@ -31,7 +31,10 @@
                 <p class="no-space margin-left-sm">{{employee.email}}</p>
                 <p class="no-space margin-left-sm" *ngIf="employee.admin">Role: Admin</p>
                 <p class="no-space margin-left-sm" *ngIf="!employee.admin">Role: Employee</p>
-                <p class="no-space margin-left-sm">Balance: {{employee.balance}}€</p>
+                <div class="form-group margin-left-sm custom-width">
+                    <input class="input" id="inputBalance" type="number" min="1" step="1" max="30" class="form-field" [value]="employee.balance" placeholder=" " (focusout)="addToUpdateList(employee, $event)">
+                    <label for="inputBalance" class="form-label">Balance</label>
+                </div>
                 <a (click)="addBalance(employee, 1)">
                     <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
                         Add 1€
@@ -48,6 +51,12 @@
                     </button>
                 </a>
             </div>
+
+            <a (click)="updateEmployees()">
+                <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-sm margin-bottom-lg">
+                    Update employees
+                </button>
+            </a>
         </div>
             
         <div class="tab-pane fade" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
