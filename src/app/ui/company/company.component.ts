@@ -284,6 +284,23 @@ export class CompanyComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Deletes an employee
+   */
+  public deleteEmployee(employee: IEmployee) {
+    let sub: Subscription = this.employeeService.deleteEmployee(employee.id).subscribe(
+      ret => {
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
+  }
+
+  /**
    * Sends the API calls to update a company
    */
   public saveSettings() {

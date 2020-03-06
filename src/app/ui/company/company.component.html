@@ -45,11 +45,18 @@
                         Add 5€
                     </button>
                 </a>
-                <a (click)="promote(employee)">
+                <a (click)="promote(employee)" *ngIf="!employee.admin">
                     <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
                         promote
                     </button>
                 </a>
+                <!--
+                <a (click)="deleteEmployee(employee)" *ngIf="!employee.admin">
+                    <button type="button" class="btn btn-primary btn-custom margin-left-sm margin-top-lg margin-bottom-sm">
+                        delete
+                    </button>
+                </a>
+                -->
             </div>
 
             <a (click)="updateEmployees()">
