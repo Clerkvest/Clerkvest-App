@@ -17,6 +17,7 @@ import { CreateComponent } from './ui/create/create.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { CompanyComponent } from './ui/company/company.component';
 import { DragDropDirective } from './directive/drag-drop.directive';
+import { NumberFormatPipe } from './pipe/number-format.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DragDropDirective } from './directive/drag-drop.directive';
     ProfileComponent,
     CompanyComponent,
     DragDropDirective,
+    NumberFormatPipe,
   ],
   imports: [
     BrowserModule,

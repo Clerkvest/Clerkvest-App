@@ -75,10 +75,10 @@
                         <span class="project-main" *ngIf="project.reached">{{project.fundedAt | date}}</span>
                         <p class="project-sub" *ngIf="project.reached">Date of completion</p>
 
-                        <span class="project-main">{{project.investedIn}}€</span>
-                        <p class="project-sub">Raised out of {{project.goal}}€</p>
+                        <span class="project-main">{{project.investedIn | numberFormat}}€</span>
+                        <p class="project-sub">Raised out of {{project.goal | numberFormat}}€</p>
 
-                        <span class="project-main" *ngIf="(invested$ | async) > 0">{{invested$ | async}}€</span>
+                        <span class="project-main" *ngIf="(invested$ | async) > 0">{{invested$ | async | numberFormat}}€</span>
                         <p class="project-sub" *ngIf="(invested$ | async) > 0">Your investment</p>
                         <a (click)="removeInvestment(project)" *ngIf="((invested$ | async) > 0) && !project.reached">
                             <button type="button" class="btn btn-primary btn-custom margin-bottom-lg">
@@ -91,7 +91,7 @@
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" [style.width.%]="calculatePercent(project)"></div>
                         </div>
-                        <p class="project-percent">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%</p>
+                        <p class="project-percent">{{((project.investedIn / project.goal) * 100) | number | numberFormat}}%</p>
 
                         <div class="form-group">
                             <input id="inputInvest" class="form-field" placeholder=" " type="number" (focusout)="focusoutHandler($event)">

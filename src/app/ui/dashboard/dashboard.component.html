@@ -18,15 +18,15 @@
                         <div class="raised-goal-container">
                             <span>
                         <span class="raised-text">Raised: </span>
-                            <span class="raised-value">{{project.investedIn}}€</span>
+                            <span class="raised-value">{{project.investedIn | numberFormat}}€</span>
                             </span>
                             <span>
-                    <span class="goal-text">Goal: </span>
-                            <span class="goal-value">{{project.goal}}€</span>
+                        <span class="goal-text">Goal: </span>
+                            <span class="goal-value">{{project.goal | numberFormat}}€</span>
                             </span>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2' | numberFormat}}%
                             </div>
                         </div>
                     </div>
@@ -51,15 +51,15 @@
                         <div class="raised-goal-container">
                             <span>
                     <span class="raised-text">Raised: </span>
-                            <span class="raised-value">{{project.investedIn}}€</span>
+                            <span class="raised-value">{{project.investedIn | numberFormat}}€</span>
                             </span>
                             <span>
                     <span class="goal-text">Goal: </span>
-                            <span class="goal-value">{{project.goal}}€</span>
+                            <span class="goal-value">{{project.goal | numberFormat}}€</span>
                             </span>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | number : '1.2-2'}}%
+                            <div class="progress-bar" role="progressbar" [style.width.%]="calculateWidth(project)">{{((project.investedIn / project.goal) * 100) | numberFormat}}%
                             </div>
                         </div>
                     </div>

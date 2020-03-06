@@ -57,7 +57,7 @@
 							<p class="no-space">Name: {{(company$ | async)?.name}}</p>
 							<p class="no-space">Domain: {{(company$ | async)?.domain}}</p>
 							<p class="no-space">Invite only: {{(company$ | async)?.inviteOnly}}</p>
-							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount}}€</p>
+							<p class="no-space">Payout amount: {{(company$ | async)?.payAmount | numberFormat}}€</p>
 							<p *ngIf="(company$ | async)?.payInterval == 1">Payout day: {{(company$ | async)?.payInterval}}st of every month</p>
 							<p *ngIf="(company$ | async)?.payInterval == 2">Payout day: {{(company$ | async)?.payInterval}}nd of every month</p>
 							<p *ngIf="(company$ | async)?.payInterval == 3">Payout day: {{(company$ | async)?.payInterval}}rd of every month</p>
@@ -91,7 +91,7 @@
 							<p class="no-space">Lastname: {{(employee$ | async)?.lastname}}</p>
 							<p class="no-space">Nickname: {{(employee$ | async)?.nickname}}</p>
 							<p class="no-space">E-Mail: {{(employee$ | async)?.email}}</p>
-							<p>Balance: {{(employee$ | async)?.balance}}€</p>
+							<p>Balance: {{(employee$ | async)?.balance | numberFormat}}€</p>
 							<a class="dropdown-btn-custom" routerLink="/myself">
 								<button type="button" class="btn btn-primary dropdown-btn-custom">
 									Edit profile
