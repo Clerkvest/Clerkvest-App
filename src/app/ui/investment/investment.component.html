@@ -39,6 +39,9 @@
               <a class="nav-link" id="pills-comments-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-comments" aria-selected="false">Comments</a>
             </li>
             <li class="nav-item" *ngIf="isOwner(project)">
+                <a class="nav-link" id="pills-edit-tab" data-toggle="pill" href="#pills-edit" role="tab" aria-controls="pills-edit" aria-selected="false">Edit</a>
+            </li>
+            <li class="nav-item" *ngIf="isOwner(project)">
                 <a class="nav-link" id="pills-delete-tab" data-toggle="pill" href="#pills-delete" role="tab" aria-controls="pills-delete" aria-selected="false">Delete</a>
             </li>
         </ul>
@@ -134,6 +137,37 @@
                 </a>
                 <p class="margin-text-top success" *ngIf="hasDeleted != undefined && hasDeleted">Delete successfully.</p>
                 <p class="margin-text-top failure" *ngIf="hasDeleted != undefined && !hasDeleted">Failed to delete. {{errorStringDelete}}</p>
+            </div>
+
+            
+            <div class="tab-pane fade" id="pills-edit" role="tabpanel" aria-labelledby="pills-edit-tab">
+                <div class="form-group">
+                    <input id="inputTitle" class="form-field" placeholder=" " [value]="project.title" (input)="project.title = $event.target.value">
+                    <label for="inputTitle" class="form-label">Title</label>
+                </div>
+                <div class="form-group">
+                    <input id="inputLink" class="form-field" placeholder=" " [value]="project.link" (input)="project.link = $event.target.value">
+                    <label for="inputLink" class="form-label">Link</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="inputDescription" class="form-field" placeholder=" " rows="6" [value]="project.description" (input)="project.description = $event.target.value"></textarea>
+                    <label for="inputDescription" class="form-label">Description</label>
+                </div>
+                <div class="upload-file-container"
+                    appDragDrop
+                    (dropped)="onDrop($event)">
+                    <input class="upload-none" type="file" id="file" (change)="onDrop($event.target.files)">
+                    <input class="upload-full-size-btn" type="button" onclick="document.getElementById('file').click();"/>
+                    <p class="upload-file-text">Drop files here or click to upload.</p>
+                </div>
+                <p class="margin-text-top" *ngIf="isFileToBig">File size can not be greater than 2mb.</p>
+                <a (click)="updateProject(project)">
+                    <button type="button" class="btn btn-primary btn-custom margin-bottom-lg">
+                        Update project
+                    </button>
+                </a>
+                <p class="margin-text-top success" *ngIf="hasUpdated != undefined && hasUpdated">Update successfully.</p>
+                <p class="margin-text-top failure" *ngIf="hasUpdated != undefined && !hasUpdated">Failed to update. {{errorStringUpdate}}</p>
             </div>
         </div>
     </div>

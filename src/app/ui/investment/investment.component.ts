@@ -109,12 +109,23 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public doesExist: boolean;
 
   /**
+   * Buff file
+   */
+  fileToUpload: any = null;
+
+  /**
+   * File upload sub
+   */
+  fileSub: Subscription;
+
+  /**
    * Error string
    */
   public errorStringInvest: string;
   public errorStringComment: string;
   public errorStringDelete: string;
-  public errorStringRemoved: string;
+  public errorStringRemoved: string;  
+  public errorStringUpdate: string;
 
   // Bools
   public isInvestThere: boolean;
@@ -123,6 +134,8 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   public hasDeleted: boolean;
   public hasCreated: boolean;
   public hasRemoved: boolean;
+  public hasUpdated: boolean;
+  public isFileToBig: boolean = false;
 
   /**
    * Creates an instance of InvestmentComponent
@@ -252,7 +265,7 @@ export class InvestmentComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Removes all investmentrs of a project from the current user logged in
+   * Removes all investments of a project from the current user logged in
    * @param project Project to delete from
    */
   removeInvestment(project: IProject) {
@@ -264,6 +277,41 @@ export class InvestmentComponent implements OnInit, OnDestroy {
       error => {
         this.hasRemoved = false;
         this.errorStringRemoved = error.status + " " + error.error.error;
+      },
+      () => {
+        sub.unsubscribe();
+      }
+    );
+  }
+
+  /**
+   * Updates the project 
+   * @param project New project
+   */
+  updateProject(project: IProject) {
+    let sub = this.projectService.updateProject(project).subscribe(
+      ret => {
+        if(!isNullOrUndefined(this.fileToUpload)) {
+
+          console.log(project);
+
+          let subImage = this.imageService.createProjectImageUsingPOST(this.fileToUpload, this.project.id).subscribe(
+            image => {
+              window.location.reload();
+            },
+            error => {
+              this.hasUpdated = false;
+              this.errorStringUpdate = error.status + " " + error.error.error;
+            },
+            () => {
+              subImage.unsubscribe();
+            }
+          );
+        }
+      },
+      error => {
+        this.hasUpdated = false;
+        this.errorStringUpdate = error.status + " " + error.error.error;
       },
       () => {
         sub.unsubscribe();
@@ -348,6 +396,21 @@ export class InvestmentComponent implements OnInit, OnDestroy {
         sub.unsubscribe();
       }
     )
+  }
+
+  /**
+   * File change event
+   * @param files Files to update. Takes the first only
+   */
+  onDrop(files: FileList) {
+    console.log(files.item(0));
+    if(files.item(0).size > 2e+6) {
+      this.isFileToBig = true;
+    } else {
+      this.isFileToBig = false;
+      this.fileToUpload = files.item(0);
+      console.log(this.fileToUpload);
+    }
   }
 
   /**
