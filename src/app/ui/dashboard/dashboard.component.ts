@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.projectsSub = this.projects$.subscribe(
       projects => {
         this.projects = projects;
-        this.orderByDate();
+        this.orderByPercentageAsc();
 
         this.loaded = true;
       }
