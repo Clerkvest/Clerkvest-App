@@ -61,3 +61,18 @@
 .progress-bar {
     background-color: var(--default-blue);
 }
+
+.order-by-btn {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.dropdown-menu {
+    width: 250px;
+}
+
+.inline-btn {
+    margin-left: 5%;
+    margin-bottom: 5px;
+    width: 90%;
+}

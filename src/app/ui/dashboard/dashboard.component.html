@@ -5,7 +5,36 @@
         <h2 class="component-title">Dashboard</h2>
     </div>
     <div class="row">
-        <div class="col-md-4 mb30" *ngFor="let project of projects$ | async">
+        <a href="#" data-toggle="dropdown" class="order-by-btn">
+            <button type="button" class="btn btn-primary btn-custom">
+                Order by
+            </button>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-left dropdown-menu-custom">
+            <a (click)="orderByDateAsc()">
+                <button type="button" class="btn btn-primary btn-custom inline-btn">
+                    Date Ascending
+                </button>
+            </a>
+            <a (click)="orderByDateDesc()">
+                <button type="button" class="btn btn-primary btn-custom inline-btn">
+                    Date Descending
+                </button>
+            </a>
+            <a (click)="orderByPercentageAsc()">
+                <button type="button" class="btn btn-primary btn-custom inline-btn">
+                    Percentage Ascending
+                </button>
+            </a>
+            <a (click)="orderByPercentageDesc()">
+                <button type="button" class="btn btn-primary btn-custom inline-btn">
+                    Percentage Descending
+                </button>
+            </a>
+        </ul>
+    </div>
+    <div class="row" *ngIf="projects">
+        <div class="col-md-4 mb30" *ngFor="let project of projects">
             <a class="card-a" (click)="openProject(project)">
                 <div class="card-block shadow-sm" *ngIf="!project.reached">
                     <div class="card-img">

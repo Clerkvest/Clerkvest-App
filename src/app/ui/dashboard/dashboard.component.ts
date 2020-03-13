@@ -7,6 +7,7 @@ import { IProject } from 'src/app/model/models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IProjectImage } from 'src/app/model/IProjectImage';
 import { APP_BASE_HREF } from '@angular/common';
+import { OrderModule } from 'ngx-order-pipe';
 
 /**
  * @author Danny B.
@@ -19,13 +20,18 @@ import { APP_BASE_HREF } from '@angular/common';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
-})
+  styleUrls: ['./dashboard.component.css']})
 export class DashboardComponent implements OnInit, OnDestroy {
   /**
    * Observable to store all project that the employee got access to.
    */
   public projects$: Observable<IProjectImage[]>;
+
+  public projectsSub: Subscription;
+
+  public projects: IProjectImage[];
+
+  public loaded: boolean = false;
 
   /**
    * Creates an instance of DashboardComponent with all needed services.
@@ -43,12 +49,68 @@ export class DashboardComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.projects$ = this.projectService.getProjects();
+
+    this.projectsSub = this.projects$.subscribe(
+      projects => {
+        this.projects = projects;
+        this.orderByDate();
+
+        this.loaded = true;
+      }
+    );
   }
 
   /**
    * Unsubs every sub
    */
   ngOnDestroy() {
+    this.projectsSub.unsubscribe();
+  }
+
+  orderByDateAsc() {
+    this.projects = this.projects.sort(function (a, b) {
+      let left: string = String(a.createdAt);
+      let right: string = String(b.createdAt);
+
+      if (left < right)
+        return -1;
+      if (left > right)
+        return 1;
+
+      return 0;
+    });
+  }
+
+  orderByDateDesc() {
+    this.projects = this.projects.sort(function (a, b) {
+      let left: string = String(a.createdAt);
+      let right: string = String(b.createdAt);
+
+      if (left > right)
+        return -1;
+      if (left < right)
+        return 1;
+
+      return 0;
+    });
+  }
+
+  orderByPercentageAsc() {
+    console.log(this.projects);
+    this.projects = this.projects.sort(function (a, b) {
+      return Math.floor(((a.investedIn / a.goal) * 100)) - Math.floor(((b.investedIn / b.goal) * 100));
+    });
+
+    console.log(this.projects);
+  }
+
+  orderByPercentageDesc() {
+    console.log(this.projects);
+    this.projects = this.projects.sort(function (a, b) {
+      return Math.floor(((b.investedIn / b.goal) * 100)) - Math.floor(((a.investedIn / a.goal) * 100));
+    });
+
+    console.log(this.projects);
   }
 
   /**
