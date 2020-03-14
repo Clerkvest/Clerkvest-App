@@ -7,7 +7,6 @@ import { IProject } from 'src/app/model/models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IProjectImage } from 'src/app/model/IProjectImage';
 import { APP_BASE_HREF } from '@angular/common';
-import { OrderModule } from 'ngx-order-pipe';
 
 /**
  * @author Danny B.
