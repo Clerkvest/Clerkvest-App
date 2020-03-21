@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { CookieService } from "ngx-cookie-service";
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class LocalService {
    * Creates an object of LocalService
    * @param {CookieService} cookie CookieService
    */
-  constructor(private cookie: CookieService) { }
+  constructor(private cookie: CookieService, @Inject(DOCUMENT) private document: Document) { }
 
   /**
    * Reads a cookie out of the local storage
@@ -63,7 +64,12 @@ export class LocalService {
    * @param value Value to set
    */
   set(name: string, value: string): void {
-    this.cookie.set(name, value, 7, '/', undefined);
+    var d = new Date();
+    d.setTime(d.getTime() + (30*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    this.document.cookie = name + '=' + value + ';' + expires + ';path=/';
+    console.log(this.document.cookie);
+    // this.cookie.set(name, value, 7, '/', undefined, true, 'Strict');
   }
 
   /**
