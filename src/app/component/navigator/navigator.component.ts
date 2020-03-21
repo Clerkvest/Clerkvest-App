@@ -68,7 +68,7 @@ export class NavigatorComponent implements OnInit, OnDestroy {
         this.company$ = this.companyService.getCompanyById(employee.companyId);
       },
       error => {
-        // window.location.href = 'http://clerkvest.com?redirected=unknown_user';
+        window.location.href = 'http://clerkvest.com?redirected=unknown_user';
       }
     );
   }
