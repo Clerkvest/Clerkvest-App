@@ -6,6 +6,7 @@ import { LoginService } from './../../service/api/login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cookie } from 'src/app/enumeration/cookie.enum';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -42,17 +43,11 @@ export class LoginComponent implements OnInit, OnDestroy {
           error => {
             console.log(error);
           },
-          () => {
-            employeeSub.unsubscribe();
-          }
         );
       },
       error => {
         console.log(error);
       },
-      () => {
-        loginSub.unsubscribe();
-      }
     );
   }
 
